@@ -1,0 +1,1555 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Διάγνωση στη Δερματολογία — Οδηγός Ταχείας Αναφοράς | MyPremier Vet portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cyan:#00AEEF; --cyan2:#25C1F0; --teal-deep:#0d5c6e; --aqua:#45d0f4;
+  --lime:#A6CE39; --lime-dk:#76A824; --pink:#E5407E; --mauve:#e7e1ec;
+  --ink:#3c3c3b; --green-bg:#f2f8e6; --blue:#0077C8; --hero-blue:#189ad6; --warn:#FFC600;
+  --hdrFull:64px;  --hdrH:48px;  --toolH:96px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Open Sans',sans-serif;color:var(--ink);background:#fff}
+::selection{background:var(--lime);color:#fff}
+a{color:var(--blue)}
+mark{background:#ffe9a8;padding:0 1px}
+.hidden{display:none!important}
+svg{display:block}
+section[id],h2[id],h3[id]{scroll-margin-top:calc(var(--hdrH) + var(--toolH) + 12px)}
+.no-trans,.no-trans *{transition:none!important}
+
+/* ---------- icon sizing (works for <img> files and inline <svg> fallbacks) ---------- */
+img.ico,svg.ico{display:block;flex:none;object-fit:contain}
+.tag .ico{width:16px;height:16px}
+.dxi .ico{width:20px;height:20px}
+.dxnote .ico{width:15px;height:15px}
+.zoo-badge .ico{width:15px;height:15px}
+.pat h5 .ico{width:20px;height:20px}
+.cond h4 .ico{width:18px;height:18px}
+#zooBtn .ico{width:14px;height:14px}
+/* Lesions chapter pattern icons — 60% bigger */
+.patgrid .pat h5 .ico{width:32px;height:32px}
+
+/* ---------- progress ---------- */
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--lime);z-index:60}
+
+/* ---------- HEADER ---------- */
+.topbar{position:fixed;top:0;left:0;right:0;background:#fff;box-shadow:0 1px 6px rgba(0,0,0,.14);z-index:55;
+  padding:8px 14px;transition:padding .3s ease,box-shadow .3s ease}
+.topbar.shrink{padding:3px 14px;box-shadow:0 2px 10px rgba(0,0,0,.2)}
+.tb-line{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap}
+.brand{display:inline-block;transform:skewX(-10deg);background:var(--blue);padding:7px 16px;border-radius:2px;flex:none;text-decoration:none;transition:transform .3s ease}
+.brand span{display:inline-block;transform:skewX(10deg);color:#fff;font-weight:800;font-style:italic;font-size:17px;letter-spacing:.5px;transition:font-size .3s ease}
+.topbar.shrink .brand{transform:skewX(-10deg) scale(.8)}
+.topbar.shrink .brand span{font-size:14px}
+.brand-title{font-weight:800;color:#0d5c6e;font-size:15px;line-height:1.15;text-align:left;
+  max-height:44px;overflow:hidden;opacity:1;transition:max-height .3s ease,opacity .25s ease}
+.brand-title small{display:block;font-weight:600;font-size:10.5px;color:var(--lime-dk);letter-spacing:.4px}
+.topbar.shrink .brand-title{max-height:0;opacity:0}
+main{padding-top:var(--hdrFull)}
+
+/* ---------- INDEX ---------- */
+.hero{position:relative;color:#fff;padding:30px 6vw 22px;background:var(--hero-blue)}
+.hero .kicker{font-weight:800;letter-spacing:2.5px;font-size:10.5px;color:#d7f3ff;text-transform:uppercase}
+.hero-title{font-weight:800;font-size:clamp(21px,3vw,30px);margin:2px 0 12px}
+.idx{display:grid;grid-template-columns:1fr 1fr;gap:1px 48px;max-width:980px;margin:0}
+.idx a{display:flex;justify-content:space-between;align-items:baseline;gap:12px;color:#fff;text-decoration:none;
+  font-weight:700;font-size:13px;padding:4px 8px;border-bottom:2px solid var(--lime);transition:background .18s}
+.idx a b{color:var(--lime);font-size:15px;flex:none}
+@media (hover:hover){
+  .idx a:hover{background:rgba(255,255,255,.16);transform:translateX(4px)}
+}
+
+/* ---------- TOOLBAR ---------- */
+.toolbar{position:sticky;top:var(--hdrH);z-index:54;background:#fff;border-bottom:1px solid #e6ebee;
+  padding:10px 20px 12px;transition:box-shadow .25s ease}
+.toolbar.stuck{box-shadow:0 4px 12px rgba(0,0,0,.14)}
+.toolbar-in{max-width:1280px;margin:0 auto}
+.subnav{display:flex;flex-wrap:wrap;gap:4px 4px;align-items:center}
+.subnav a{flex:none;font-size:11.5px;font-weight:700;color:#5c6b73;text-decoration:none;padding:4px 10px;border-radius:12px}
+.subnav a:hover{background:#eef6fb;color:var(--cyan)}
+.subnav a.act{background:var(--cyan);color:#fff}
+#exAll{margin-left:auto;flex:none;border:1.5px solid var(--lime);background:#fff;color:var(--lime-dk);font:inherit;font-size:11.5px;font-weight:800;padding:4px 12px;border-radius:14px;cursor:pointer;white-space:nowrap}
+#exAll:hover{background:var(--lime);color:#fff}
+.searchrow{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:10px}
+.searchwrap{flex:1 1 240px;max-width:460px;display:flex;align-items:center;gap:8px;background:#f0f3f6;border:1px solid #dde3e9;border-radius:20px;padding:6px 14px;min-width:150px}
+.searchwrap input{border:0;background:none;outline:0;font:inherit;font-size:13px;width:100%}
+#count{font-size:11px;font-weight:700;color:var(--lime-dk);white-space:nowrap}
+#zooBtn{border:1.5px solid var(--warn);background:#fff;border-radius:16px;padding:5px 12px;font:inherit;font-size:11.5px;font-weight:700;color:#7a5b00;cursor:pointer;display:flex;gap:6px;align-items:center;flex:none}
+#zooBtn.on{background:var(--warn);color:#222}
+
+/* ---------- CHAPTERS ---------- */
+.chapter{max-width:1280px;margin:0 auto 16px;padding:0 20px;position:relative}
+button.spread-head{font:inherit;text-align:left;cursor:pointer;user-select:none;position:relative;z-index:1;
+  background:linear-gradient(90deg,var(--cyan),var(--cyan2));color:#fff;border:0;width:100%;
+  display:flex;align-items:center;gap:16px;padding:14px 20px;border-radius:4px;box-shadow:0 3px 10px rgba(0,174,239,.25)}
+button.spread-head:focus-visible{outline:3px solid var(--lime);outline-offset:2px}
+button.spread-head h2{margin:0;flex:1;font-size:clamp(18px,2.3vw,25px);font-weight:800}
+.chnum{flex:none;display:inline-flex;align-items:center;justify-content:center;
+  min-width:36px;height:36px;padding:0 10px;border:2px solid rgba(255,255,255,.85);
+  border-radius:7px;font-weight:800;font-size:17px;color:#fff;background:rgba(0,0,0,.14)}
+.chev{flex:none;width:18px;height:18px;transition:transform .35s}
+.chapter.open .chev{transform:rotate(180deg)}
+.acc-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s ease}
+.chapter.open .acc-body{grid-template-rows:1fr}
+.acc-inner{overflow:hidden;min-height:0;position:relative;z-index:1}
+.acc-pad{padding:24px 4px 34px}
+.legend{display:flex;gap:16px;justify-content:flex-end;margin:10px 4px 0;font-size:11px;font-weight:700;color:#8a8f98}
+.legend i{display:inline-block;width:12px;height:12px;margin-right:5px;vertical-align:-2px;border-radius:2px}
+.legend .l1 i{background:#e7e1ec}.legend .l2 i{background:var(--lime)}
+
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:22px}
+.topic{margin-bottom:32px}
+.topic>h3{color:var(--lime-dk);font-size:23px;font-weight:800;margin:0 0 14px}
+.topic>h3.h-cyan{color:var(--cyan)}
+.h3-banner{display:inline-block;background:var(--cyan);color:#fff;font-weight:800;font-size:20px;padding:8px 26px 8px 16px;margin:0 0 16px;
+  clip-path:polygon(0 0,100% 0,96% 100%,0 100%)}
+.h3-banner.pink{background:var(--pink)}
+
+/* condition cards — flow-root contains the floated photos */
+.condgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.cond{background:#fff;border:1px solid #ececec;border-top:3px solid var(--lime);border-radius:8px;padding:14px 16px 16px;
+  box-shadow:0 1px 4px rgba(0,0,0,.05);transition:.25s;cursor:default;display:flow-root;overflow-wrap:break-word}
+.cond:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,.12)}
+/* .zoo is ONLY a marker class on cards (used by the filter) — no visual styles here */
+body.zoo-only .cond.zoo{border-top-color:var(--warn);background:#fffdf2}
+.cond h4{margin:0 0 6px;color:var(--lime-dk);font-size:16.5px;font-weight:800;
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;overflow-wrap:anywhere}
+.cond p{font-size:12.5px;line-height:1.55;margin:6px 0}
+.checks{list-style:none;margin:8px 0;padding:0}
+.checks li{font-size:12.5px;line-height:1.5;padding-left:20px;position:relative;margin:6px 0}
+.checks li::before{content:"✔";color:var(--lime);position:absolute;left:0;font-weight:800}
+.taghead{font-size:10px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:#9aa3ad;margin:12px 0 6px}
+.tags{display:flex;flex-wrap:wrap;gap:5px}
+.tag{display:inline-flex;align-items:center;gap:6px;background:var(--mauve);color:#4a4a4a;font-size:11.5px;font-weight:600;padding:4px 9px;border-radius:3px;line-height:1.25}
+.dxbar{background:var(--lime);display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:4px;flex-wrap:wrap;margin-top:10px}
+.dxi{width:34px;height:34px;border-radius:50%;background:#fff;display:grid;place-items:center;position:relative;border:0;flex:none}
+.dxi::after{content:attr(data-tip);position:absolute;bottom:120%;left:50%;transform:translateX(-50%);background:#3c3c3b;color:#fff;
+  font-size:10px;font-weight:600;padding:3px 8px;border-radius:3px;white-space:nowrap;opacity:0;pointer-events:none;transition:.15s;z-index:5}
+.dxi:hover::after{opacity:1}
+.dxnote{background:#fff;color:#3c3c3b;font-size:11px;font-weight:700;padding:5px 10px;border-radius:3px;display:inline-flex;gap:6px;align-items:center}
+/* Zoonosis badge pill — lives inside <h4>; class is .zoo-badge
+   (NOT .zoo, which is reserved for marking whole cards) */
+.zoo-badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:800;color:#3c3c3b;
+  flex:none;padding:3px 9px;background:rgba(255,198,0,.22);border:1.5px solid var(--warn);
+  border-radius:12px;line-height:1.25;white-space:nowrap}
+.figcap{font-size:10.5px;font-style:italic;color:#8a8f98;margin:4px 0 0}
+body.spot .cond:not(.focused){opacity:.22;filter:saturate(.5)}
+
+.fnbar{background:var(--lime);color:#fff;font-weight:700;font-size:13px;padding:7px 14px;margin:4px 0;border-radius:2px}
+.pink-banner{background:var(--pink);color:#fff;font-weight:800;text-align:center;font-size:13.5px;padding:14px 18px;line-height:1.45;border-radius:3px}
+
+/* steppers (skin cross-section only) */
+.panel{background:#fff;border:1px solid #ececec;border-radius:8px;padding:16px;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.circbtns{display:flex;gap:12px;margin:6px 0 12px}
+.circbtn{width:42px;height:42px;border-radius:50%;border:2px dashed #b9d465;background:#fff;color:#9cc23c;font-weight:800;font-size:17px;cursor:pointer;transition:.2s;font-family:inherit}
+.circbtn:hover{transform:scale(1.08)}
+.circbtn.on{border-style:solid;background:var(--lime);color:#fff}
+.stepPane{display:none;font-size:12.5px;line-height:1.55}
+.stepPane.show{display:block}
+
+/* ---------- skin cross-section ---------- */
+.skinfig{position:relative;border-radius:6px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.06);margin:4px 0 10px;background:#fff}
+.skinfig>img{width:100%;height:auto;display:block;cursor:zoom-in}
+.skinzone{position:absolute;top:0;height:89%;width:33.4%;opacity:0;transition:opacity .4s;pointer-events:none;
+  background:rgba(166,206,57,.20);box-shadow:inset 0 0 0 3px var(--lime)}
+.sz1{left:0}.sz2{left:33.3%}.sz3{left:66.6%}
+.skinwrap[data-state="1"] .sz1,
+.skinwrap[data-state="2"] .sz2,
+.skinwrap[data-state="3"] .sz3{opacity:1}
+
+/* ---------- media: photos FLOAT, text wraps beside them ---------- */
+.medblock{margin:4px 0 8px}
+.medblock>img.medimg,
+.medblock>figure.medfig{float:left;margin:2px 14px 10px 0}
+.medrow{display:flex;gap:12px;align-items:flex-start;margin:10px 0;flex-wrap:wrap}
+.medimg{width:156px;height:auto;flex:none;border:1px solid #e6ebee;border-radius:6px;background:#f7f9fb;cursor:zoom-in;transition:.2s}
+.medimg:hover{box-shadow:0 4px 12px rgba(0,0,0,.18);transform:translateY(-2px)}
+figure.medfig{margin:0}
+figure.medfig .medimg{width:195px}
+
+/* hair growth PNG — full-width diagram inside its panel (no float) */
+.medblock>img.medimg.hair-img{float:none;width:100%;max-width:420px;margin:2px 0 10px;display:block}
+
+#lb{position:fixed;inset:0;z-index:100;background:rgba(13,60,74,.92);display:none;
+  align-items:center;justify-content:center;flex-direction:column;padding:34px}
+#lb.show{display:flex}
+#lb img{max-width:calc(100vw - 120px);max-height:calc(100vh - 130px);border-radius:6px;
+  box-shadow:0 12px 50px rgba(0,0,0,.55);background:#fff}
+#lbCap{color:#eafcff;font-size:13px;margin-top:14px;text-align:center;max-width:70vw}
+#lbBtn{position:absolute;top:16px;right:18px;width:40px;height:40px;border:0;border-radius:50%;
+  background:rgba(255,255,255,.14);color:#fff;font-size:20px;cursor:pointer}
+#lbBtn:hover{background:var(--lime)}
+#lbPrev,#lbNext{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border:0;border-radius:50%;
+  background:rgba(255,255,255,.14);color:#fff;font-size:20px;cursor:pointer}
+#lbPrev:hover,#lbNext:hover{background:var(--lime)}
+#lbPrev{left:16px}#lbNext{right:16px}
+
+.chiprow{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 4px}
+.chip{background:var(--mauve);border-radius:14px;padding:4px 12px;font-size:11.5px;font-weight:700;color:#5a5a5a}
+.footchip{font-size:10.5px;color:#8a8f98;font-style:italic;margin-top:4px}
+
+/* lesions pattern grid */
+.patgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin-top:14px}
+.pat{background:#f7f5fa;border-radius:8px;padding:13px 15px}
+.pat h5{display:flex;align-items:center;gap:10px;margin:0 0 8px;font-size:14px;color:var(--cyan)}
+.pat p{font-size:11.5px;line-height:1.5;margin:6px 0}
+.pat b{color:#3c3c3b}
+.swrow{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;margin:7px 0}
+.sw{width:34px;height:12px;border-radius:2px;flex:none}
+
+/* ---------- FOOTER ---------- */
+.foot{background:#fff;border-top:2px solid var(--lime);padding:36px 6vw 34px}
+.foot-grid{max-width:1280px;margin:0 auto;display:flex;gap:48px;flex-wrap:wrap;align-items:flex-start}
+.foot .biblio{flex:1 1 420px;font-size:11px;line-height:1.55;color:var(--ink)}
+.foot .biblio h4{margin:0 0 6px;font-size:12.5px;color:var(--teal-deep)}
+.foot .biblio ul{margin:0;padding-left:16px}
+.foot-brand{margin-left:auto;text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:12px}
+.foot p{margin:0;font-size:11.5px;color:#5a5a5a;text-align:right}
+
+#toTop{position:fixed;right:20px;bottom:22px;width:44px;height:44px;border-radius:50%;border:0;background:var(--lime);color:#fff;
+  font-size:19px;font-weight:800;cursor:pointer;opacity:0;pointer-events:none;transition:.25s;box-shadow:0 4px 12px rgba(0,0,0,.25);z-index:50}
+#toTop.show{opacity:1;pointer-events:auto}
+#toTop:hover{transform:translateY(-3px)}
+
+/* ---------- keyboard focus on photos (lightbox triggers) ---------- */
+img.medimg:focus-visible,.skinfig>img:focus-visible{outline:3px solid var(--lime);outline-offset:2px}
+
+/* ---------- (2) empty search state ---------- */
+#noResults{max-width:1280px;margin:0 auto;padding:30px 24px 8px;text-align:center;color:#6b7680;font-size:14px}
+#noResults b{color:var(--ink)}
+#noResults button{margin-top:12px;border:1.5px solid var(--lime);background:#fff;color:var(--lime-dk);
+  font:inherit;font-size:12.5px;font-weight:800;padding:8px 16px;border-radius:16px;cursor:pointer}
+#noResults button:hover{background:var(--lime);color:#fff}
+
+/* ---------- (5) larger touch targets on coarse pointers ---------- */
+@media (pointer:coarse){
+  .subnav a{padding:8px 13px}
+  #zooBtn{padding:8px 14px}
+  .dxi{width:40px;height:40px}
+  .tag{padding:6px 11px}
+  .chip{padding:6px 14px}
+  #lbBtn{width:48px;height:48px;font-size:22px}
+  #lbPrev,#lbNext{width:52px;height:52px;font-size:24px}
+  #toTop{width:50px;height:50px}
+}
+
+@media (max-width:920px){
+  .cols{grid-template-columns:1fr}
+  .idx{grid-template-columns:1fr}
+  .brand-title{display:none}
+  .foot-brand{margin-left:0;text-align:left;align-items:flex-start}
+  .foot p{text-align:left}
+  #lb img{max-width:calc(100vw - 40px)}
+  #lbPrev,#lbNext{width:36px;height:36px}
+}
+@media (max-width:560px){
+  #zooBtn span{display:none}
+  .medimg{width:132px}
+  figure.medfig .medimg{width:165px}
+}
+@media (max-width:420px){
+  .cond h4{font-size:14.5px}
+  .zoo-badge{font-size:10px;padding:2px 7px;gap:4px}
+  .zoo-badge .zoo-label{display:none}
+  .idx a b{min-width:26px;text-align:right}
+}
+
+/* ---------- (4) reduced motion — honour the OS setting everywhere ---------- */
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{
+    transition-duration:.01ms!important;
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    scroll-behavior:auto!important;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+ASSET MANIFEST — all paths relative to index.html
+Content images:  images/<name>
+  skin-cross-section.png · hair-growth.png · trichogram.png · biopsy.png
+  culture-petri.png · pyoderma.webp · deep_pyoderma.webp · malassezia.webp
+  dermatophytosis.webp · distemper.webp · papillomavirus.webp
+  leishmania.webp · fleas.webp · ticks.webp · myiasis.webp · mange.webp
+  sarcoptes.webp · cat_mange.webp · otodectes_mange.webp
+  otodectesmicro.webp · demodexspp.webp · fad.webp · cad.webp
+  felinegranuloma.webp · alopecia.webp · otheralopecias.webp
+  seborrhoea.webp · hepatocut.webp · naso_digital_hyperkeratosis.webp
+  ear_dermatosis.webp · hyperplasia_tail_gland.webp · feline_acne.webp
+  lentigo.webp · vitiligo.webp · post-inflammatory-hyperpigmentation.webp
+  nasal_depigmentation.webp · autoimmune1.webp · autoimmune2.webp
+  autoimmune3.webp · autoimmune4.webp · neoplasia.webp · cellulitis.webp
+  acral_dermatitis.webp · solar_dermatosis.webp · bacterial_pododermatitis.webp
+  bacterial_nail_disease.webp · nail_mycosis.webp · calluses.webp
+  blepharitis.webp · otitis_externa.webp · anal_sac_disease.webp
+Icons (square SVG 24×24): images/icons/<id>.svg
+  If an icon file is missing, the page automatically renders the built-in
+  version inline — icons always display, with or without the files.
+  Lesion icon mapping (consolidated):
+    i-pap  → papule, plaque, nodule, tumour, wheal, welt, papilloma
+    i-cyst → cyst, vesicle, bulla, pustule
+    i-eros → erosion, ulcer
+    i-prur → pruritus / pain · i-scale → scale/seborrhoea · i-alo → alopecia
+    i-crust → crust/scab · i-ery → erythema · i-hyper → hyperpigmentation
+    i-hypo → hypopigmentation · i-lich → lichenification
+    i-hyperk → hyperkeratosis · i-comedo → comedone · i-nail → nail/paronychia
+    i-fist → fistula · i-abs → abscess
+Icons: i-zoo i-prur i-pap i-cyst i-scale i-alo i-crust i-ery i-hyper
+  i-hypo i-eros i-lich i-hyperk i-comedo i-nail i-fist i-abs i-paw (spare)
+  dx-an dx-mag dx-cyt dx-cul dx-scr dx-bio dx-tri dx-ser
+Missing photos show an "image not found" tile (or hide if
+HIDE_MISSING_IMAGES = true in the script below).
+============================================================ -->
+
+<!-- ======== BUILT-IN ICON LIBRARY (fallback source) ======== -->
+<svg data-iconlib width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+
+<symbol id="i-paw" viewBox="0 0 24 24"><ellipse cx="4.6" cy="10.6" rx="1.9" ry="2.6" transform="rotate(-18 4.6 10.6)" fill="currentColor"/><ellipse cx="9.4" cy="6.8" rx="1.9" ry="2.7" transform="rotate(-6 9.4 6.8)" fill="currentColor"/><ellipse cx="14.6" cy="6.8" rx="1.9" ry="2.7" transform="rotate(6 14.6 6.8)" fill="currentColor"/><ellipse cx="19.4" cy="10.6" rx="1.9" ry="2.6" transform="rotate(18 19.4 10.6)" fill="currentColor"/><path d="M12 11.2c3.4 0 6.1 2.7 6.1 5.5 0 2.1-1.7 3.4-3.8 3.1-1.5-.2-3.1-.2-4.6 0-2.1.3-3.8-1-3.8-3.1 0-2.8 2.7-5.5 6.1-5.5z" fill="currentColor"/></symbol>
+
+<symbol id="i-zoo" viewBox="0 0 24 24"><path d="M12 2.5 22.5 21h-21z" fill="#FFC600" stroke="#d9a600" stroke-width="1.2" stroke-linejoin="round"/><path d="M12 9.5v5.5" stroke="#222" stroke-width="2.4" stroke-linecap="round"/><circle cx="12" cy="17.8" r="1.3" fill="#222"/></symbol>
+
+<symbol id="i-prur" viewBox="0 0 24 24"><path d="M12 2l1.7 5L19 4.6l-2.5 4.7L22 12l-5.5 2.7L19 19.4l-5.3-2.6L12 22l-1.7-5.2L5 19.4l2.5-4.7L2 12l5.5-2.7L5 4.6l5.3 2.4z" fill="#e8484f"/></symbol>
+<symbol id="i-pap" viewBox="0 0 24 24"><path d="M3 19c2-6 5-9 9-9s7 3 9 9z" fill="#b0793f"/><rect x="2" y="19" width="20" height="1.6" fill="#d9cfc0"/></symbol>
+<symbol id="i-cyst" viewBox="0 0 24 24"><rect x="2" y="19" width="20" height="1.8" fill="#d9cfc0"/><circle cx="12" cy="12" r="7" fill="#fff" stroke="#b9b0c6" stroke-width="1.6"/><path d="M6.5 13.5a7 7 0 0 0 11 0z" fill="#f2c9d4"/></symbol>
+<symbol id="i-scale" viewBox="0 0 24 24"><g fill="#d8b98a"><rect x="3" y="6" width="12" height="3.2" rx="1.6" transform="rotate(-8 9 7.6)"/><rect x="8" y="11" width="13" height="3.2" rx="1.6" transform="rotate(6 14 12.6)"/><rect x="4" y="16" width="12" height="3.2" rx="1.6" transform="rotate(-5 10 17.6)"/></g></symbol>
+<symbol id="i-alo" viewBox="0 0 24 24"><g fill="#b0793f"><rect x="3" y="4" width="2.6" height="16" rx="1.3"/><rect x="8" y="4" width="2.6" height="16" rx="1.3"/><rect x="13" y="4" width="2.6" height="16" rx="1.3"/><rect x="18" y="4" width="2.6" height="16" rx="1.3"/></g></symbol>
+<symbol id="i-crust" viewBox="0 0 24 24"><rect x="2" y="18" width="20" height="2" fill="#d9cfc0"/><g fill="#8a5a2b"><circle cx="7" cy="15" r="2.4"/><circle cx="12" cy="16" r="2.9"/><circle cx="17" cy="14.5" r="2.2"/></g></symbol>
+<symbol id="i-ery" viewBox="0 0 24 24"><rect x="2" y="9" width="20" height="6.5" rx="3.2" fill="#f26d6d"/></symbol>
+<symbol id="i-hyper" viewBox="0 0 24 24"><rect x="2" y="9" width="20" height="6.5" rx="3.2" fill="#5f4128"/></symbol>
+<symbol id="i-hypo" viewBox="0 0 24 24"><rect x="2.8" y="9.8" width="18.4" height="4.9" rx="2.4" fill="#f3ece2" stroke="#d8c9b8" stroke-width="1.4"/></symbol>
+<symbol id="i-eros" viewBox="0 0 24 24"><path d="M4 9a8.5 4.2 0 0 0 17 0z" fill="#f0cfcf"/><rect x="2.5" y="13" width="19" height="1.6" fill="#d9cfc0"/></symbol>
+<symbol id="i-lich" viewBox="0 0 24 24"><g fill="#8a5a2b"><rect x="3" y="5" width="2.2" height="14"/><rect x="6.7" y="5" width="2.2" height="14"/><rect x="10.4" y="5" width="2.2" height="14"/><rect x="14.1" y="5" width="2.2" height="14"/><rect x="17.8" y="5" width="2.2" height="14"/></g></symbol>
+<symbol id="i-hyperk" viewBox="0 0 24 24"><rect x="2" y="8.5" width="20" height="7.5" rx="2" fill="#d8b98a"/><path d="M8 8.5l2 7.5M14 8.5l-1.6 7.5M19 8.5l-2.4 7.5" stroke="#fff" stroke-width="1.4"/></symbol>
+<symbol id="i-comedo" viewBox="0 0 24 24"><rect x="2" y="17" width="20" height="2.4" rx="1.2" fill="#e8d9c4"/><g fill="#4a3a2a"><circle cx="7" cy="13.5" r="2.3"/><circle cx="12" cy="12.8" r="2.3"/><circle cx="17" cy="13.5" r="2.3"/></g></symbol>
+<symbol id="i-nail" viewBox="0 0 24 24"><path d="M9 3c4 0 6.5 3.5 6.5 8S13 21 9 21c-2.8 0-4-2-4-4.5V8c0-3 1.4-5 4-5z" fill="#e9d3ae" stroke="#c9ad7c" stroke-width="1.4"/><path d="M6 16.5h9.4" stroke="#c9ad7c" stroke-width="1.4"/></symbol>
+<symbol id="i-fist" viewBox="0 0 24 24"><path d="M4 19c0-5.5 3.5-7 7.5-7.5S19 9 20 5" fill="none" stroke="#a97c50" stroke-width="2.4" stroke-linecap="round"/><circle cx="4.6" cy="19" r="2.4" fill="#e8484f"/></symbol>
+<symbol id="i-abs" viewBox="0 0 24 24"><rect x="2" y="19" width="20" height="1.8" fill="#d9cfc0"/><circle cx="12" cy="12.5" r="6.5" fill="#f6dede" stroke="#d96a6a" stroke-width="1.8"/><circle cx="12" cy="12.5" r="2.6" fill="#e8b04a"/></symbol>
+
+<symbol id="dx-an" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10.5" fill="#f5a623"/><text x="12" y="17.2" text-anchor="middle" font-size="15" font-weight="800" fill="#fff" font-family="Open Sans,sans-serif">?</text></symbol>
+<symbol id="dx-mag" viewBox="0 0 24 24"><circle cx="10" cy="10" r="6" fill="#eaf4fb" stroke="#4a6a86" stroke-width="2.4"/><line x1="14.8" y1="14.8" x2="21" y2="21" stroke="#2b4d6f" stroke-width="3.2" stroke-linecap="round"/></symbol>
+<symbol id="dx-cyt" viewBox="0 0 24 24"><rect x="2.5" y="7" width="19" height="10.5" rx="2" fill="#fff" stroke="#9aa3ad" stroke-width="1.6"/><rect x="5" y="9.5" width="6" height="5.5" fill="#b06cc0"/><circle cx="15.5" cy="12.3" r="2.4" fill="#7e4b93"/></symbol>
+<symbol id="dx-cul" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="#fdf6e3" stroke="#9aa3ad" stroke-width="1.8"/><circle cx="9" cy="10" r="1.7" fill="#c9b98a"/><circle cx="14" cy="14.5" r="2.1" fill="#c9b98a"/><circle cx="15.5" cy="9" r="1.3" fill="#c9b98a"/></symbol>
+<symbol id="dx-scr" viewBox="0 0 24 24"><line x1="12" y1="3" x2="5.2" y2="18.6" stroke="#5b6770" stroke-width="2.2" stroke-linecap="round"/><line x1="12" y1="3" x2="18.8" y2="18.6" stroke="#5b6770" stroke-width="2.2" stroke-linecap="round"/><circle cx="4.8" cy="19.4" r="2" fill="none" stroke="#5b6770" stroke-width="1.8"/><circle cx="19.2" cy="19.4" r="2" fill="none" stroke="#5b6770" stroke-width="1.8"/></symbol>
+<symbol id="dx-bio" viewBox="0 0 24 24"><line x1="4" y1="20" x2="12" y2="12" stroke="#5b6770" stroke-width="3" stroke-linecap="round"/><path d="M12 12l8.5-8.5-1.8 6.4-4.4 4.4z" fill="#c7ccd3" stroke="#8a8f98"/></symbol>
+<symbol id="dx-tri" viewBox="0 0 24 24"><path d="M9 2.5c0 6.5 1 9.5 3 19 2-9.5 3-12.5 3-19" fill="none" stroke="#5b6770" stroke-width="2"/><path d="M12 21c3-4 6.5-5 8.5-9" fill="none" stroke="#b0793f" stroke-width="1.6"/></symbol>
+<symbol id="dx-ser" viewBox="0 0 24 24"><rect x="4.5" y="4" width="15" height="17" rx="2" fill="#fff" stroke="#5b6770" stroke-width="2"/><rect x="9" y="2" width="6" height="4" rx="1" fill="#5b6770"/><g stroke="#5b6770" stroke-width="1.6" stroke-linecap="round"><line x1="8" y1="10.5" x2="16" y2="10.5"/><line x1="8" y1="13.5" x2="16" y2="13.5"/><line x1="8" y1="16.5" x2="13" y2="16.5"/></g></symbol>
+</defs></svg>
+
+<div id="progress"></div>
+
+<!-- ======== HEADER ======== -->
+<header class="topbar" id="topbar">
+  <div class="tb-line">
+    <a class="brand" href="#top" aria-label="Elanco"><span>MyPremier Vet Portal</span></a>
+    
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ==================== INDEX ==================== -->
+<section class="hero">
+  <div class="kicker">Οδηγός ταχείας αναφοράς</div>
+  <div class="hero-title">Διάγνωση στη Δερματολογία</div>
+  <nav class="idx">
+    <a href="#pathophysiology">Παθοφυσιολογία του δερματικού συστήματος <b>1</b></a>
+    <a href="#alopecia">Αλωπεκίες <b>10</b></a>
+    <a href="#diagnostics">Διαγνωστικές τεχνικές <b>2</b></a>
+    <a href="#keratoseborrhoeic">Κερατοσμηγματόρροες διαταραχές <b>11</b></a>
+    <a href="#lesions">Βλάβες <b>3</b></a>
+    <a href="#pigmentation">Διαταραχές της χρώσης <b>12</b></a>
+    <a href="#bacterial">Βακτηριακές δερματοπάθειες <b>4</b></a>
+    <a href="#immune">Ανοσολογικές δερματοπάθειες <b>13</b></a>
+    <a href="#fungal">Μυκητιασικές δερματοπάθειες <b>5</b></a>
+    <a href="#neoplasia">Νεοπλασίες <b>14</b></a>
+    <a href="#viral">Ιικές δερματοπάθειες <b>6</b></a>
+    <a href="#other">Άλλες δερματοπάθειες <b>15</b></a>
+    <a href="#parasitic">Παρασιτικές δερματοπάθειες <b>7</b></a>
+    <a href="#extremities">Άκρα <b>16</b></a>
+    <a href="#allergic">Αλλεργικές δερματοπάθειες <b>8</b></a>
+    <a href="#calluses">Τύλοι <b>17</b></a>
+    <a href="#fegc">Σύμπλεγμα ηωσinοφιλικού κοκκιώματος της γάτας <b>9</b></a>
+    <a href="#eyelids">Βλέφαρα <b>18</b></a>
+    <a href="#analsacs">Πρωκτικοί σάκοι <b>19</b></a>
+    <a href="#ears">Αυτιά <b>20</b></a>
+  </nav>
+</section>
+
+<!-- ==================== TOOLBAR ==================== -->
+<div class="toolbar" id="toolbar">
+  <div class="toolbar-in">
+    <nav class="subnav" aria-label="Πλοήγηση ενοτήτων">
+      <a href="#top">Ευρετήριο</a><a href="#pathophysiology">Παθοφυσιολογία</a><a href="#diagnostics">Τεχνικές</a>
+      <a href="#lesions">Βλάβες</a><a href="#bacterial">Βακτηριακές</a><a href="#fungal">Μυκητιασικές</a><a href="#viral">Ιικές</a>
+      <a href="#parasitic">Παρασιτικές</a><a href="#allergic">Αλλεργικές</a><a href="#fegc">Σύμπλεγμα ΗΚ</a><a href="#alopecia">Αλωπεκίες</a>
+      <a href="#keratoseborrhoeic">Κερατοσμηγμ.</a><a href="#pigmentation">Χρώση</a><a href="#immune">Ανοσολογικές</a>
+      <a href="#neoplasia">Νεοπλασίες</a><a href="#other">Άλλες</a><a href="#extremities">Άκρα</a><a href="#calluses">Τύλοι</a>
+      <a href="#eyelids">Βλέφαρα</a><a href="#ears">Αυτιά</a><a href="#analsacs">Πρωκτικοί σάκοι</a>
+      <button id="exAll">Ανάπτυξη όλων</button>
+    </nav>
+    <div class="searchrow">
+      <div class="searchwrap">
+        <svg width="15" height="15" viewBox="0 0 24 24"><circle cx="10" cy="10" r="6" fill="none" stroke="#7a8790" stroke-width="2.4"/><line x1="15" y1="15" x2="21" y2="21" stroke="#7a8790" stroke-width="2.6" stroke-linecap="round"/></svg>
+        <input id="search" type="search" placeholder="Αναζήτηση παθήσεων, βλαβών, τεχνικών…" aria-label="Αναζήτηση">
+        <span id="count"></span>
+      </div>
+      <button id="zooBtn" title="Εμφάνιση μόνο ζωονόσων"><img class="ico" src="images/icons/i-zoo.svg" data-sym="i-zoo" alt=""> <span>Μόνο ζωονόσοι</span></button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== CHAPTER 1 · PATHOPHYSIOLOGY ==================== -->
+<section class="spread chapter" id="ch1">
+  <button class="spread-head acc-head" aria-expanded="false" aria-controls="ch1-body">
+    <span class="chnum">1</span>
+    <h2 id="pathophysiology" class="acc-title">Παθοφυσιολογία του δερματικού συστήματος</h2>
+    <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <div class="acc-body" id="ch1-body"><div class="acc-inner"><div class="acc-pad">
+  <div class="cols">
+    <div>
+      <div class="topic s-item" data-static>
+        <div class="skinwrap" data-state="1" data-mode="skin">
+          <div class="skinfig">
+            <img src="images/skin-cross-section.png" alt="Δερματική τομή που δείχνει υγιές δέρμα, οξεία βλάβη και χρόνια βλάβη, με βέλος ΠΡΟΚΛΗΣΗΣ" data-lb="Υγιές δέρμα · Οξεία βλάβη · Χρόνια βλάβη (δερματική τομή)">
+            <div class="skinzone sz1" title="Υγιές δέρμα"></div>
+            <div class="skinzone sz2" title="Οξεία βλάβη"></div>
+            <div class="skinzone sz3" title="Χρόνια βλάβη"></div>
+          </div>
+          <div class="circbtns">
+            <button class="circbtn on" data-step="1">1</button>
+            <button class="circbtn" data-step="2">2</button>
+            <button class="circbtn" data-step="3">3</button>
+          </div>
+          <div class="panes">
+            <div class="stepPane show" data-step="1"><b style="color:var(--cyan)">Υγιές δέρμα.</b> Το δέρμα είναι το μεγαλύτερο όργανο του σώματος και καλύπτει ολόκληρη την επιφάνειά του. Μπορεί να υποστεί βλάβη λόγω:
+              <ul class="checks">
+                <li><b>Εξωτερικής πρόκλησης</b> από φυσικούς, χημικούς ή βιολογικούς παράγοντες.</li>
+                <li><b>Εσωτερικών δερματικών διαταραχών</b> που αλλοιώνουν τη δομή ή τη φυσιολογία του.</li>
+                <li><b>Συστηματικών διαταραχών</b> που αλλοιώνουν τη δερματική φυσιολογία ή προκαλούν ανοσοκαταστολή, καθιστώντας το πιο ευαίσθητο στις επιδράσεις άλλων παραγόντων.</li>
+                <li><b>Μιας υπερβολικής ανοσολογικής απάντησης</b>, όπως σε περιπτώσεις υπερευαισθησίας.</li>
+              </ul>
+            </div>
+            <div class="stepPane" data-step="2"><b style="color:var(--pink)">Οξεία βλάβη.</b> Όταν δέχεται επίθεση, το σώμα παράγει μια <b>ανοσολογική αντίδραση</b> για να προσπαθήσει να αποκαταστήσει τη βλάβη και, όπου ενδείκνυται, να εξαλείψει τον αιτιολογικό παράγοντα. Αυτό μπορεί να προκαλέσει οξεία φλεγμονώδη αντίδραση, η οποία εκδηλώνεται με τα πέντε σημεία της φλεγμονής: θερμότητα, ερυθρότητα, οίδημα, πόνο και <b>functio laesa</b> (απώλεια λειτουργίας).</div>
+            <div class="stepPane" data-step="3"><b style="color:var(--cyan)">Χρόνια βλάβη.</b> Σε συνεχή ή εκτεταμένη πρόκληση, το σώμα μπορεί να είναι ανίκανο να επιδιορθώσει τη βλάβη ή να αποκαταστήσει την αρχική του δομή, αφήνοντας μια ουλής ή άλλες <b>χρόνιες δερματικές βλάβες</b>, όπως πάχυνση του δέρματος και υπερπλάστωση/υπερμελάχρωση.</div>
+          </div>
+        </div>
+      </div>
+      <div class="topic s-item" data-static>
+        <h3 style="color:var(--cyan)">Λειτουργίες του δερματικού συστήματος</h3>
+        <p style="font-size:12.5px;line-height:1.55">Το δερματικό σύστημα αποτελείται από το δέρμα και τις σχετικές δομές του, όπως οι τρίχες, τα νύχια και οι αδένες. Επιτελεί σημαντικές λειτουργίες:</p>
+        <div class="fnbar">Προστασία</div><div class="fnbar">Διατήρηση νερού και λίπους</div>
+        <div class="fnbar">Θερμορύθμιση</div><div class="fnbar">Αισθητικές λειτουργίες</div>
+        <div class="fnbar">Αποκριτικές λειτουργίες</div><div class="fnbar">Ενεργοποίηση της βιταμίνης D</div>
+        <div class="fnbar">Αιμοδυναμικός έλεγχος</div>
+        <div class="pink-banner" style="margin-top:14px">Το δερματικό σύστημα αποτελεί καθρέφτη της γενικής κατάστασης υγείας του σώματος.</div>
+      </div>
+    </div>
+    <div>
+      <div class="topic panel s-item" data-static>
+        <h4 style="color:var(--pink);margin:0 0 8px">Τρίχα</h4>
+        <p style="font-size:12.5px">Η τρίχα είναι μια δομή με βάση την πρωτεΐνη, η οποία σχηματίζεται από κερατίνη και οργανώνεται σε μια εύκαμπτη και ελαστική ίνα. Παρέχει προστασία, διευκολύνει τη θερμορύθμιση και εμπλέκεται στην αισθητική αντίληψη, ιδιαίτερα στην περίπτωση των απτικών τριχών (μουστάκια). Το τρίχωμα ανανεώνεται περιοδικά.</p>
+        <!-- [MEDIA] images/hair-growth.png — static 4-phase cycle diagram (1 anagen · 2 catagen · 3 telogen · 4 return to anagen) -->
+        <div class="medblock">
+          <img class="medimg hair-img" src="images/hair-growth.png" alt="Διάγραμμα κύκλου ανάπτυξης τρίχας: 1 αναγενής, 2 καταγενής, 3 τελογενής, 4 επιστροφή στην αναγενή" data-lb="Κύκλος ανάπτυξης τρίχας — 1 αναγενής · 2 καταγενής · 3 τελογενής · 4 επιστροφή στην αναγενή">
+        </div>
+        <ul class="checks" style="margin-top:10px">
+          <li><b>1 · Φάση ανάπτυξης (αναγενής):</b> η τρίχα γεννιέται και μεγαλώνει, προσκολλημένη στη θηλή. Όσο διαρκεί αυτό το στάδιο, τόσο μεγαλύτερη θα είναι η τρίχα.</li>
+          <li><b>2 · Φάση μετάβασης (καταγενής):</b> η δραστηριότητα των κυττάρων του θύλακα παύει. Η τρίχα σταματά να μεγαλώνει και διαχωρίζεται από τη θηλή.</li>
+          <li><b>3 · Φάση ηρεμίας (τελογενής):</b> η ρίζα της τρίχας παραμένει στον θύλακα αλλά πέφτει αν τραβηχτεί απαλά.</li>
+          <li><b>4 · Επιστροφή στην αναγενή φάση ανάπτυξης:</b> ο κύκλος επανεκινείται και μια νέα τρίχα αρχίζει να μεγαλώνει.</li>
+        </ul>
+      </div>
+      <div class="topic panel s-item" data-static>
+        <h4 style="color:var(--pink);margin:0 0 8px">Δερματικές εκκρισεις</h4>
+        <p style="font-size:12.5px">Τα κερατινοκύτταρα, μαζί με τους σμηγματογόνους και ιδρωτοποιούς αδένες, σχηματίζουν μια λιπιδική έκκριση που προστατεύει το δέρμα από εξωτερικούς παράγοντες και το διατηρεί ενυδατωμένο και ελαστικό.</p>
+      </div>
+      <div class="topic panel s-item" data-static>
+        <h4 style="color:var(--pink);margin:0 0 8px">Νύχι</h4>
+        <p style="font-size:12.5px">Το νύχι είναι μια υψηλά κερατινοποιημένη και σκληρή δομή. Κάτω από τα νύχια βρίσκονται αρτηριοφλεβικά τριχοειδή κρεβάτια. Τα νύχια πρέπει να κόβονται στο επίπεδο του πελματικού μαξιλαρίου προκειμένου να αποτραπεί η βλάβη σε αυτά τα αιμοφόρα αγγεία.</p>
+      </div>
+    </div>
+  </div>
+  </div></div></div>
+</section>
+
+<!-- ==================== CHAPTER 2 · DIAGNOSTIC TECHNIQUES ==================== -->
+<section class="spread chapter" id="ch2">
+  <button class="spread-head acc-head" aria-expanded="false" aria-controls="ch2-body">
+    <span class="chnum">2</span>
+    <h2 id="diagnostics" class="acc-title">Διαγνωστικές τεχνικές</h2>
+    <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <div class="acc-body" id="ch2-body"><div class="acc-inner"><div class="acc-pad">
+  <div class="cols">
+    <div>
+      <div class="condgrid">
+        <article class="cond s-item"><h4><img class="ico" src="images/icons/dx-an.svg" data-sym="dx-an" alt="">Αναμνηστικό (Ιστορικό)</h4>
+          <p>Δώστε ιδιαίτερη προσοχή στην ηλικία, το φύλο, τη φυλή, την αναπαραγωγική κατάσταση, τη διατροφή, την υγιεινή, τη ρουτίνα άσκησης, την επαφή με άλλα ζώα, την αποπαρασίτωση, τον εμβολιασμό και τη χορήγηση άλλων θεραπειών.</p></article>
+        <article class="cond s-item"><h4><img class="ico" src="images/icons/dx-mag.svg" data-sym="dx-mag" alt="">Κλινική εξέταση</h4>
+          <p>Λεπτομερής περιγραφή της βλάβης και πλήρης εξέταση για τον εντοπισμό τυχόν άλλων κλινικών σημείων που μπορούν να βοηθήσουν στη διάγνωση του αιτιολογικού παράγοντα, τον εντοπισμό προδιαθεσικών παράγοντων ή άλλων υποκείμενων διεργασιών.</p></article>
+        <article class="cond s-item"><h4>Συμπληρωματικές εξετάσεις</h4>
+          <div class="panel" style="box-shadow:none;border:1px dashed #cfe0b0;padding:10px">
+            <p style="margin:0 0 6px"><b style="color:var(--lime-dk)">Άλλες διαγνωστικές τεχνικές.</b> Εργαστηριακές ή άλλες διαγνωστικές τεχνικές που μπορούν να επιβεβαιώσουν την εικazόμενη διάγνωση.</p>
+            <p style="margin:6px 0"><b style="color:var(--lime-dk)">Ξέσιμο δέρματος.</b> Δείγμα για μικροσκόπηση. <b>Επιφανειακό:</b> εντοπίζει επιδερμικά παράσιτα του δέρματος. <b>Βαθύ:</b> πρέπει να προκαλέσει ελαφρά αιμορραγία. Εντοπίζει δερματικά παράσιτα.</p>
+            <div class="medrow">
+              <img class="medimg" src="images/trichogram.svg" alt="Τριχόγραμμα: λαβίδα που συγκρατεί τρίχα τραβηγμένη από τη ρίζα" data-lb="Τριχόγραμμα — μικροσκοπική παρατήρηση δείγματος τρίχας που τραβήχτηκε από τη ρίζα">
+              <p style="margin:0"><b style="color:var(--lime-dk)">Τριχόγραμμα.</b> Μικροσκοπική παρατήρηση δείγματος τρίχας που τραβήχτηκε από τη ρίζα.</p>
+            </div>
+            <div class="medrow">
+              <img class="medimg" src="images/biopsy.png" alt="Βιοψία: εργαλείο punch που περιστρέφεται και νυστέρι που συλλέγει δερματική βλάβη" data-lb="Βιοψία — δείγμα υγιούς και τραυματισμένου ιστού που λαμβάνεται με νυστέρι, ψαλίδι ή punch">
+              <p style="margin:0"><b style="color:var(--lime-dk)">Βιοψία.</b> Ένα δείγμα υγιούς και τραυματισμένου ιστού που λαμβάνεται με νυστέρι, ψαλίδι ή punch, λαμβάνεται για ιστοπαθολογική εξέταση.</p>
+            </div>
+          </div></article>
+      </div>
+    </div>
+    <div>
+      <div class="condgrid">
+        <article class="cond s-item"><h4><img class="ico" src="images/icons/dx-cyt.svg" data-sym="dx-cyt" alt="">Κυτταρολογία</h4>
+          <p>Υπάρχουν πολλές διαφορετικές τεχνικές για τη λήψη δειγμάτων για κυτταρολογία, ανάλογα με τον τύπο της βλάβης. Μόλις ληφθεί, το δείγμα αναλύεται χρησιμοποιώντας διαφορετικές τεχνικές χρώσης.</p>
+          <div class="chiprow"><span class="chip">Κολλητική ταινία</span><span class="chip">Αποτύπωση</span><span class="chip">Επιχρίσματα (Swab)</span><span class="chip">FNA*</span></div>
+          <div class="footchip">* Παρακέντηση με λεπτή βελόνα (Fine Needle Aspiration).</div></article>
+        <article class="cond s-item"><h4><img class="ico" src="images/icons/dx-cul.svg" data-sym="dx-cul" alt="">Καλλιέργεια</h4>
+          <p>Επιτρέπει την ταυτοποίηση των μικροοργανισμών που λαμβάνονται στο δείγμα και τον έλεγχο της ευαισθησίας τους στα αντιβιοτικά.</p>
+          <div class="medrow">
+            <img class="medimg" src="images/culture-petri.png" alt="Βακτηριακή καλλιέργεια: αποικίες που αναπτύσσονται σε άγαρ σε τρυβλίo Petri" data-lb="Βακτηριακή καλλιέργεια και αντιβιόγραμμα — αποικίες σε άγαρ σε τρυβλίο Petri">
+            <div>
+              <div class="chiprow" style="margin:0 0 6px"><span class="chip">Βακτηριακή καλλιέργεια και αντιβιόγραμμα</span><span class="chip">Άγαρ Sabouraud</span><span class="chip">Καλλιέργεια μυκήτων — DTM*</span></div>
+              <div class="footchip">* Δερματοφυτικό Θρεπτικό Υλικό (Dermatophyte Test Medium).</div>
+            </div>
+          </div></article>
+      </div>
+    </div>
+  </div>
+  </div></div></div>
+</section>
+
+<!-- ==================== CHAPTER 3 · LESIONS ==================== -->
+<section class="spread chapter" id="ch3">
+  <button class="spread-head acc-head" aria-expanded="false" aria-controls="ch3-body">
+    <span class="chnum">3</span>
+    <h2 id="lesions" class="acc-title">Βλάβες</h2>
+    <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <div class="acc-body" id="ch3-body"><div class="acc-inner"><div class="acc-pad">
+  <p style="font-size:12.5px"><b>Η κατανομή, το σχήμα, το μέγεθος, το χρώμα, η σύσταση των βλαβών και η παρουσία τυχόν εξιδρώματος πρέπει να <span style="color:var(--cyan)">περιγράφονται λεπτομερώς</span>.</b> Ορισμένα πρότυπα μπορούν να εντοπιστούν:</p>
+  <div class="patgrid">
+    <div class="pat s-item"><h5><img class="ico" src="images/icons/i-prur.svg" data-sym="i-prur" alt="">Κνησμός ή πόνος</h5>
+      <p>Ο κνησμός αποτελεί βασικό κλινικό χαρακτηριστικό σε ορισμένες διεργασίες, αν και μπορεί να προκληθεί από δευτερογενή μόλυνση μιας βλάβης. Διεγείρει το ξύσιμο το οποίο μπορεί να οδηγήσει σε αυτοπροκαλούμενους τραυματισμούς.</p></div>
+    <div class="pat s-item"><h5><img class="ico" src="images/icons/i-pap.svg" data-sym="i-pap" alt="">Ανυψωμένες στερεές βλάβες</h5>
+      <p>Με διήθηση ή/και κυτταρικό πολλαπλασιασμό.</p>
+      <p><b>Βλατίδα:</b> &lt; 1 cm · <b>Πλάκες:</b> επίπεδες &gt; 1 cm<br><b>Οζίδιο:</b> 1–2 cm · <b>Όγκος:</b> &gt; 2 cm<br><b>Πομφός/οιδηματώδης πλάκα:</b> με οίδημα</p></div>
+    <div class="pat s-item"><h5><img class="ico" src="images/icons/i-cyst.svg" data-sym="i-cyst" alt="">Βλάβες με περιεχόμενο</h5>
+      <p><b>Κύστη:</b> υγρό/ημιστερεό περιεχόμενο που περικλείεται σε κοιλότητα με τοίχωμα. <b>Φυσσαλίδα (Vesicle):</b> υγρό περιεχόμενο. <b>Πομφολύγες (Bulla):</b> υγρό περιεχόμενο, διάμετρος &gt; 5 mm. <b>Φλύκταινα:</b> πυώδες περιεχόμενο. Όταν σπάνε, οι φλύκταινες σχηματίζουν <b>επιπεδρικά περιλαίμια (epidermal collars)</b>.</p></div>
+    <div class="pat s-item"><h5><img class="ico" src="images/icons/i-comedo.svg" data-sym="i-comedo" alt="">Φαγέσωρες</h5>
+      <p>Απόφραξη του θύλακα της τρίχας με σμηγματώδη και επιδερμικά υπολείμματα.</p></div>
+    <div class="pat s-item"><h5>Διαταραχές της χρώσης</h5>
+      <div class="swrow"><span class="sw" style="background:#f26d6d"></span>Ερύθημα</div>
+      <div class="swrow"><span class="sw" style="background:#5f4128"></span>Υπερμελάχρωση</div>
+      <div class="swrow"><span class="sw" style="background:#f3ece2;border:1px solid #d8c9b8"></span>Υπομελάχρωση</div>
+      <p><b>Κηλίδα:</b> &lt; 1 cm · <b>Εκτεταμένες κηλίδες/κηλίδες τύπου λεκέ:</b> &gt; 1 cm</p></div>
+    <div class="pat s-item"><h5><img class="ico" src="images/icons/i-eros.svg" data-sym="i-eros" alt="">Απώλεια δερματικού τόνου</h5>
+      <p><b>Διάβρωση:</b> επιφανειακή επιδερμική βλάβη. <b>Έλκος:</b> απώλεια της επιδερμίδας. Εκτίθεται το χόριο (βαθύτερος ιστός).</p></div>
+    <div class="pat s-item"><h5><img class="ico" src="images/icons/i-scale.svg" data-sym="i-scale" alt="">Κερατοσμηγματόρροες διαταραχές</h5>
+      <p>Αλλοίωση της επιφάνειας του δέρματος που χαρακτηρίζεται από έλλειψη στην κερατινοποίηση ή κερατινοποίηση/σχηματισμό φολίδων.</p></div>
+    <div class="pat s-item"><h5><img class="ico" src="images/icons/i-alo.svg" data-sym="i-alo" alt="">Αλωπεκία</h5>
+      <p>Merική ή ολική απώλεια τρίχας.</p></div>
+    <div class="pat s-item"><h5><img class="ico" src="images/icons/i-lich.svg" data-sym="i-lich" alt="">Πάχυνση</h5>
+      <p>Συνήθως εμφανίζεται ως αποτέλεσμα χρόνιας βλάβης. <b>Λειχηνοποίηση:</b> πάχυνση του δέρματος. <b>Υπερκεράτωση:</b> πάχυνση της κερατίνης στιβάδας. Μπορεί να εμφανιστούν ρωγμές.</p></div>
+  </div>
+  </div></div></div>
+</section>
+
+<!-- ==================== CHAPTER 4 · BACTERIAL DERMATOPATHIES ==================== -->
+<section class="spread chapter" id="ch4">
+  <button class="spread-head acc-head" aria-expanded="false" aria-controls="ch4-body">
+    <span class="chnum">4</span>
+    <h2 id="bacterial" class="acc-title">Βακτηριακές δερματοπάθειες</h2>
+    <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <div class="acc-body" id="ch4-body"><div class="acc-inner"><div class="acc-pad">
+  <div class="legend"><span class="l1"><i></i>Βλάβες</span><span class="l2"><i></i>Διαγνωστικές τεχνικές</span></div>
+  <div class="condgrid" style="margin-top:18px">
+    <article class="cond s-item"><h4>Επιφανειακό πυόδερμα</h4>
+      <p>Βακτηριακή λοίμωξη περιορισμένη στις μεσοθυλακικές επιδερμικές στιβάδες του δέρματος. Οι πιο συχνές μορφές επιφανειακού πυοδέρματος είναι:</p>
+      <ul class="checks">
+        <li><b>Οξεία εξυδρωτική δερματίτιδα (hot spot)</b> — δευτερογενής σε αυτοπροκαλούμενο τραύμα που προκαλείται από κνησμώδη ή επώδυνο ερεθισμό.</li>
+        <li><b>Βλεννογονοδερματικό πυόδερμα</b> — προσβάλλει βλεννογονοδερματικές ενώσεις όπως τα χείλη, τα βλέφαρα, τα γεννητικά όργανα ή τον πρωκτό.</li>
+        <li><b>Intertrigo ή πυόδερμα των δερματικών πτυχών</b> — συχνό σε υπέρβαρα σκυλιά και ορισμένες φυλές όπως το Shar Pei ή βραχυκέφαλες φυλές.</li>
+      </ul>
+      <div class="taghead">Βλάβες</div><div class="tags">
+        <span class="tag"><img class="ico" src="images/icons/i-prur.svg" data-sym="i-prur" alt="">Μεταβλητός κνησμός</span><span class="tag"><img class="ico" src="images/icons/i-pap.svg" data-sym="i-pap" alt="">Βλατίδες</span><span class="tag"><img class="ico" src="images/icons/i-cyst.svg" data-sym="i-cyst" alt="">Φλύκταινες</span><span class="tag"><img class="ico" src="images/icons/i-scale.svg" data-sym="i-scale" alt="">Απολέπιση δέρματος</span><span class="tag"><img class="ico" src="images/icons/i-alo.svg" data-sym="i-alo" alt="">Αλωπεκία</span><span class="tag"><img class="ico" src="images/icons/i-ery.svg" data-sym="i-ery" alt="">Ερύθημα</span></div>
+      <div class="dxbar"><button class="dxi" data-tip="Αναμνηστικό"><img class="ico" src="images/icons/dx-an.svg" data-sym="dx-an" alt=""></button><button class="dxi" data-tip="Κλινική εξέταση"><img class="ico" src="images/icons/dx-mag.svg" data-sym="dx-mag" alt=""></button><button class="dxi" data-tip="Κυτταρολογία"><img class="ico" src="images/icons/dx-cyt.svg" data-sym="dx-cyt" alt=""></button><button class="dxi" data-tip="Καλλιέργεια & αντιβιόγραμμα"><img class="ico" src="images/icons/dx-cul.svg" data-sym="dx-cul" alt=""></button></div></article>
+    <article class="cond s-item"><h4>Επιφανειακό πυόδερμα</h4>
+      <div class="medblock"><img class="medimg" src="images/pyoderma.webp" alt="Επιφανειακό πυόδερμα" data-lb="Επιφανειακό πυόδερμα"></div>
+      <p>Βακτηριακή λοίμωξη που επηρεάζει τους θύλακες των τριχών και την επιδερμίδα του δέρματος. Αυτό μπορεί να είναι δευτερογενές σε κακή κατάσταση υγείας.</p>
+      <ul class="checks">
+        <li><b>Impetigo ή επιφανειακή φλυκταινώδης δερματίτιδα</b> — επηρεάζει περιοχές χωρίς τρίχες όπως η κοιλιακή χώρα και είναι πιο συχνή σε νεαρά ζώα.</li>
+        <li><b>Σύνδρομο βακτηριακής υπερανάπτυξης</b> — συνδέεται με υπερανάπτυξη του <i>Staphylococcus pseudintermedius</i> και χαρακτηρίζεται από μεγάλο αριθμό βακτηρίων, ερύθημα, κνησμό και δυσοσμία.</li>
+      </ul>
+      <div class="taghead">Βλάβες</div><div class="tags">
+        <span class="tag"><img class="ico" src="images/icons/i-prur.svg" data-sym="i-prur" alt="">Μεταβλητός κνησμός</span><span class="tag"><img class="ico" src="images/icons/i-pap.svg" data-sym="i-pap" alt="">Βλατίδες</span><span class="tag"><img class="ico" src="images/icons/i-cyst.svg" data-sym="i-cyst" alt="">Φλύκταινες</span><span class="tag"><img class="ico" src="images/icons/i-scale.svg" data-sym="i-scale" alt="">Απολέπιση δέρματος</span><span class="tag"><img class="ico" src="images/icons/i-alo.svg" data-sym="i-alo" alt="">Αλωπεκία</span><span class="tag"><img class="ico" src="images/icons/i-ery.svg" data-sym="i-ery" alt="">Ερύθημα</span></div>
+      <div class="dxbar"><button class="dxi" data-tip="Αναμνηστικό"><img class="ico" src="images/icons/dx-an.svg" data-sym="dx-an" alt=""></button><button class="dxi" data-tip="Κλινική εξέταση"><img class="ico" src="images/icons/dx-mag.svg" data-sym="dx-mag" alt=""></button><button class="dxi" data-tip="Κυτταρολογία"><img class="ico" src="images/icons/dx-cyt.svg" data-sym="dx-cyt" alt=""></button><button class="dxi" data-tip="Καλλιέργεια & αντιβιόγραμμα"><img class="ico" src="images/icons/dx-cul.svg" data-sym="dx-cul" alt=""></button></div></article>
+    <article class="cond s-item"><h4>Βαθύ πυόδερμα</h4>
+      <div class="medblock"><img class="medimg" src="images/deep_pyoderma.webp" alt="Βαθύ πυόδερμα" data-lb="Βαθύ πυόδερμα"></div>
+      <p>Βακτηριακή λοίμωξη που προκαλεί θυλακίτιδα και κυτταρίτιδα. Παρουσία οροαιματικού ή πυώδους εξιδρώματος. Η λεμφαденоμεγαλία, ο πυρετός, η ανορεξία και η κατάθλιψη είναι κοινά.</p>
+      <div class="taghead">Βλάβες</div><div class="tags">
+        <span class="tag"><img class="ico" src="images/icons/i-prur.svg" data-sym="i-prur" alt="">Κνησμός και πόνος</span><span class="tag"><img class="ico" src="images/icons/i-pap.svg" data-sym="i-pap" alt="">Βλατίδες</span><span class="tag"><img class="ico" src="images/icons/i-cyst.svg" data-sym="i-cyst" alt="">Φλύκταινες</span><span class="tag"><img class="ico" src="images/icons/i-crust.svg" data-sym="i-crust" alt="">Κρούστες (εφελκίδες)</span><span class="tag"><img class="ico" src="images/icons/i-alo.svg" data-sym="i-alo" alt="">Αλωπεκία</span><span class="tag"><img class="ico" src="images/icons/i-eros.svg" data-sym="i-eros" alt="">Διαβρώσεις και έλκη</span></div>
+      <div class="dxbar"><button class="dxi" data-tip="Αναμνηστικό"><img class="ico" src="images/icons/dx-an.svg" data-sym="dx-an" alt=""></button><button class="dxi" data-tip="Κλινική εξέταση"><img class="ico" src="images/icons/dx-mag.svg" data-sym="dx-mag" alt=""></button><button class="dxi" data-tip="Κυτταρολογία"><img class="ico" src="images/icons/dx-cyt.svg" data-sym="dx-cyt" alt=""></button><button class="dxi" data-tip="Καλλιέργεια & αντιβιόγραμμα"><img class="ico" src="images/icons/dx-cul.svg" data-sym="dx-cul" alt=""></button></div></article>
+    <article class="cond s-item"><h4>Υποδόριο απόστημα</h4>
+      <p>Αυτά συμβαίνουν λόγω βακτηριακού ενοφθαλμισμού στο δέρμα από τραύματα διατάτtonτος χαρακτήρα (νυγμού), συνήθως από δαγκώματα.</p>
+      <div class="taghead">Βλάβες</div><div class="tags"><span class="tag"><img class="ico" src="images/icons/i-abs.svg" data-sym="i-abs" alt="">Απόστημα</span></div>
+      <div class="dxbar"><button class="dxi" data-tip="Αναμνηστικό"><img class="ico" src="images/icons/dx-an.svg" data-sym="dx-an" alt=""></button><button class="dxi" data-tip="Κλινική εξέταση"><img class="ico" src="images/icons/dx-mag.svg" data-sym="dx-mag" alt=""></button><button class="dxi" data-tip="Κυτταρολογία"><img class="ico" src="images/icons/dx-cyt.svg" data-sym="dx-cyt" alt=""></button><button class="dxi" data-tip="Καλλιέργεια & αντιβιόγραμμα"><img class="ico" src="images/icons/dx-cul.svg" data-sym="dx-cul" alt=""></button></div></article>
+  </div>
+  </div></div></div>
+</section>
+
+<!-- ==================== CHAPTER 5 · FUNGAL DERMATOPATHIES ==================== -->
+<section class="spread chapter" id="ch5">
+  <button class="spread-head acc-head" aria-expanded="false" aria-controls="ch5-body">
+    <span class="chnum">5</span>
+    <h2 id="fungal" class="acc-title">Μυκητιασικές δερματοπάθειες</h2>
+    <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <div class="acc-body" id="ch5-body"><div class="acc-inner"><div class="acc-pad">
+  <div class="condgrid">
+    <article class="cond s-item"><h4>Δερματίτιδα που προκαλείται από <i>Malassezia pachydermatis</i></h4>
+      <div class="medblock"><img class="medimg" src="images/malassezia.webp" alt="Δερματίτιδα από Malassezia pachydermatis" data-lb="Δερματίτιδα από Malassezia pachydermatis"></div>
+      <p>Αυτός ο ζυμομύκητας βρίσκεται στον έξω ακουστικό πόρο και σε άλλες περιοχές του δέρματος. Προκαλεί δερματίτιδα λόγω υπερευαισθησίας ή υπερανάπτυξης εξαιτίας υποκείμενων νοσημάτων.</p>
+      <div class="taghead">Βλάβες</div><div class="tags">
+        <span class="tag"><img class="ico" src="images/icons/i-prur.svg" data-sym="i-prur" alt="">Μέτριος έως έντονος κνησμός</span><span class="tag"><img class="ico" src="images/icons/i-scale.svg" data-sym="i-scale" alt="">Σμηγματόρροια</span><span class="tag"><img class="ico" src="images/icons/i-ery.svg" data-sym="i-ery" alt="">Ερύθημα</span><span class="tag"><img class="ico" src="images/icons/i-alo.svg" data-sym="i-alo" alt="">Αλωπεκία</span><span class="tag"><img class="ico" src="images/icons/i-hyper.svg" data-sym="i-hyper" alt="">Υπερμελάχρωση</span><span class="tag"><img class="ico" src="images/icons/i-lich.svg" data-sym="i-lich" alt="">Λειχηνοποίηση</span></div>
+      <div class="dxbar"><button class="dxi" data-tip="Αναμνηστικό"><img class="ico" src="images/icons/dx-an.svg" data-sym="dx-an" alt=""></button><button class="dxi" data-tip="Κλινική εξέταση"><img class="ico" src="images/icons/dx-mag.svg" data-sym="dx-mag" alt=""></button><button class="dxi" data-tip="Κυτταρολογία"><img class="ico" src="images/icons/dx-cyt.svg" data-sym="dx-cyt" alt=""></button><button class="dxi" data-tip="Καλλιέργεια & αντιβιόγραμμα"><img class="ico" src="images/icons/dx-cul.svg" data-sym="dx-cul" alt=""></button></div></article>
+    <article class="cond s-item zoo"><h4>Δερματοφυτίαση (γραμμοειδής λειχήνας / ringworm) <span class="zoo-badge"><img class="ico" src="images/icons/i-zoo.svg" data-sym="i-zoo" alt=""><span class="zoo-label">Ζωονόσος</span></span></h4>
+      <div class="medblock"><img class="medimg" src="images/dermatophytosis.webp" alt="Δερματοφυτίαση (ringworm)" data-lb="Δερματοφυτίαση (ringworm)"></div>
+      <p>Λοίμωξη του στελέχους της τρίχας και της κερατίνης στιβάδας που προκαλείται από κερατινόφιλους μύκητες, π.χ. <i>Microsporum canis</i>. Είναι πιο συχνή σε νεαρά ζώα.</p>
+      <div class="taghead">Βλάβες</div><div class="tags">
+        <span class="tag"><img class="ico" src="images/icons/i-prur.svg" data-sym="i-prur" alt="">Μεταβλητός κνησμός</span><span class="tag"><img class="ico" src="images/icons/i-pap.svg" data-sym="i-pap" alt="">Βλατίδες</span><span class="tag"><img class="ico" src="images/icons/i-scale.svg" data-sym="i-scale" alt="">Απολέπιση δέρματος και σμηγματόρροια</span><span class="tag"><img class="ico" src="images/icons/i-alo.svg" data-sym="i-alo" alt="">Αλωπεκία</span><span class="tag"><img class="ico" src="images/icons/i-ery.svg" data-sym="i-ery" alt="">Ερύθημα</span><span class="tag"><img class="ico" src="images/icons/i-nail.svg" data-sym="i-nail" alt="">Παρονυχία ή ονυχοδυσπλασία</span></div>
+      <div class="dxbar"><button class="dxi" data-tip="Αναμνηστικό"><img class="ico" src="images/icons/dx-an.svg" data-sym="dx-an" alt=""></button><button class="dxi" data-tip="Κλινική εξέταση"><img class="ico" src="images/icons/dx-mag.svg" data-sym="dx-mag" alt=""></button><button class="dxi" data-tip="Κυτταρολογία"><img class="ico" src="images/icons/dx-cyt.svg" data-sym="dx-cyt" alt=""></button><button class="dxi" data-tip="Ξέσιμο δέρματος / απόσπαση τριχών"><img class="ico" src="images/icons/dx-scr.svg" data-sym="dx-scr" alt=""></button><button class="dxi" data-tip="Καλλιέργεια (DTM)"><img class="ico" src="images/icons/dx-cul.svg" data-sym="dx-cul" alt=""></button></div></article>
+  </div>
+  </div></div></div>
+</section>
+
+<!-- ==================== CHAPTER 6 · VIRAL DERMATOPATHIES ==================== -->
+<section class="spread chapter" id="ch6">
+  <button class="spread-head acc-head" aria-expanded="false" aria-controls="ch6-body">
+    <span class="chnum">6</span>
+    <h2 id="viral" class="acc-title">Ιικές δερματοπάθειες</h2>
+    <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <div class="acc-body" id="ch6-body"><div class="acc-inner"><div class="acc-pad">
+  <div class="condgrid">
+    <article class="cond s-item"><h4>Μορφίτης σκύλου (Νόσος Carré / Canine distemper)</h4>
+      <div class="medblock"><img class="medimg" src="images/distemper.webp" alt="Μορφίτης σκύλου — νόσος σκληρού πέλματος" data-lb="Μορφίτης σκύλου («νόσος σκληρού πέλματος» / hardpad disease)"></div>
+      <p>Μεταξύ μιας ποικιλίας κλινικών σημείων, μπορεί να υπάρχει ρινική και ψηφιακή υπερκεράτωση, γι' αυτό η ασθένεια αυτή είναι επίσης γνωστή ως «νόσος του σκληρού πέλματος».</p>
+      <div class="taghead">Βλάβες</div><div class="tags"><span class="tag"><img class="ico" src="images/icons/i-hyperk.svg" data-sym="i-hyperk" alt="">Υπερκεράτωση</span></div>
+      <div class="dxbar"><button class="dxi" data-tip="Αναμνηστικό"><img class="ico" src="images/icons/dx-an.svg" data-sym="dx-an" alt=""></button><button class="dxi" data-tip="Κλινική εξέταση"><img class="ico" src="images/icons/dx-mag.svg" data-sym="dx-mag" alt=""></button><span class="dxnote"><img class="ico" src="images/icons/dx-ser.svg" data-sym="dx-ser" alt="">Ορολογία / Ορολογία</span></div></article>
+    <article class="cond s-item"><h4>Ιός θηλωμάτων (Papillomavirus)</h4>
+      <div class="medblock"><img class="medimg" src="images/papillomavirus.webp" alt="Ιός θηλωμάτων σκύλου — στοματικά θηλώματα" data-lb="Ιός θηλωμάτων (Papillomavirus)"></div>
+      <div class="taghead">Βλάβες</div><div class="tags"><span class="tag"><img class="ico" src="images/icons/i-pap.svg" data-sym="i-pap" alt="">Θηλώματα</span></div>
+      <div class="dxbar"><button class="dxi" data-tip="Βιοψία"><img class="ico" src="images/icons/dx-bio.svg" data-sym="dx-bio" alt=""></button></div></article>
+  </div>
+  </div></div></div>
+</section>
+
+<!-- ==================== CHAPTER 7 · PARASITIC DERMATOPATHIES ==================== -->
+<section class="spread chapter" id="ch7">
+  <button class="spread-head acc-head" aria-expanded="false" aria-controls="ch7-body">
+    <span class="chnum">7</span>
+    <h2 id="parasitic" class="acc-title">Παρασιτικές δερματοπάθειες</h2>
+    <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <div class="acc-body" id="ch7-body"><div class="acc-inner"><div class="acc-pad">
+  <div class="cols">
+    <div>
+      <div class="condgrid">
+        <article class="cond s-item zoo"><h4>Λεϊσμανίωση (Leishmaniosis) <span class="zoo-badge"><img class="ico" src="images/icons/i-zoo.svg" data-sym="i-zoo" alt=""><span class="zoo-label">Ζωονόσος</span></span></h4>
+          <div class="medblock"><img class="medimg" src="images/leishmania.webp" alt="Λεϊσμανίωση" data-lb="Λεϊσμανίωση"></div>
+          <p>Αυτή η ζωονόσος πρωτοζωική λοίμωξη που μεταδίδεται με φορείς μπορεί να παρουσιάσει ένα ευρύ φάσμα κλινικών σημείων. Τα δερματικά σημεία ξεκινούν από το πρόσωπο και εξαπλώνονται στο υπόλοιπο σώμα, ιδιαίτερα στους αγκώνες, τα γόνατα και τα νύχια.</p>
+          <div class="taghead">Βλάβες</div><div class="tags">
+            <span class="tag"><img class="ico" src="images/icons/i-alo.svg" data-sym="i-alo" alt="">Περιοφθαλμική και συμμετρική αλωπεκία</span><span class="tag"><img class="ico" src="images/icons/i-scale.svg" data-sym="i-scale" alt="">Λευκωπές φολίδες</span><span class="tag"><img class="ico" src="images/icons/i-hyperk.svg" data-sym="i-hyperk" alt="">Ρινική και ψηφιακή υπερκεράτωση</span><span class="tag"><img class="ico" src="images/icons/i-eros.svg" data-sym="i-eros" alt="">Έλκη στη μύτη, τα αυτιά και την ουρά</span><span class="tag"><img class="ico" src="images/icons/i-nail.svg" data-sym="i-nail" alt="">Ονυχογρύπωση</span></div>
+          <div class="dxbar"><button class="dxi" data-tip="Αναμνηστικό"><img class="ico" src="images/icons/dx-an.svg" data-sym="dx-an" alt=""></button><button class="dxi" data-tip="Κλινική εξέταση"><img class="ico" src="images/icons/dx-mag.svg" data-sym="dx-mag" alt=""></button><span class="dxnote"><img class="ico" src="images/icons/dx-ser.svg" data-sym="dx-ser" alt="">Ορολογία, PCR, ιστολογία/κυτταρολογία</span></div></article>
+        <article class="cond s-item zoo"><h4>Ψύλλοι <span class="zoo-badge"><img class="ico" src="images/icons/i-zoo.svg" data-sym="i-zoo" alt=""><span class="zoo-label">Ζωονόσος</span></span></h4>
+          <div class="medblock"><img class="medimg" src="images/fleas.webp" alt="Ψύλλοι" data-lb="Ψύλλοι"></div>
+          <p>Τρέφονται με το αίμα του ξενιστή τους. Τα ζώα μπορεί να είναι ασυμπτωματικά ή να παρουσιάζουν αναιμία και κνησμό. Οι ψύλλοι είναι φορείς του <i>Dipylidium caninum</i>.</p>
+          <div class="taghead">Βλάβες</div><div class="tags">
+            <span class="tag"><img class="ico" src="images/icons/i-prur.svg" data-sym="i-prur" alt="">Κνησμός</span><span class="tag"><img class="ico" src="images/icons/i-ery.svg" data-sym="i-ery" alt="">Ερύθημα</span><span class="tag"><img class="ico" src="images/icons/i-pap.svg" data-sym="i-pap" alt="">Βλατίδες</span></div>
+          <div class="dxbar"><button class="dxi" data-tip="Αναμνηστικό"><img class="ico" src="images/icons/dx-an.svg" data-sym="dx-an" alt=""></button><button class="dxi" data-tip="Κλινική εξέταση"><img class="ico" src="images/icons/dx-mag.svg" data-sym="dx-mag" alt=""></button><span class="dxnote"><img class="ico" src="images/icons/dx-mag.svg" data-sym="dx-mag" alt="">Εξέταση τριχώματος για ψύλλους ή περιττώματα ψύλλων</span></div></article>
+        <article class="cond s-item zoo"><h4>Κρότωνες (Τσιμπούρια) <span class="zoo-badge"><img class="ico" src="images/icons/i-zoo.svg" data-sym="i-zoo" alt=""><span class="zoo-label">Ζωονόσος</span></span></h4>
+          <div class="medblock"><img class="medimg" src="images/ticks.webp" alt="Κρότωνες" data-lb="Κρότωνες (Τσιμπούρια)"></div>
+          <p>Είναι αιματοφάγα αрахνίδια που μπορούν να προκαλέσουν αναιμία. Είναι φορείς πολλών ασθενειών, συμπεριλαμβανομένης της βαβεσίωσης και της ερλιχίωσης.</p>
+          <div class="taghead">Βλάβες</div><div class="tags">
+            <span class="tag"><img class="ico" src="images/icons/i-ery.svg" data-sym="i-ery" alt="">Ερύθημα</span><span class="tag"><img class="ico" src="images/icons/i-pap.svg" data-sym="i-pap" alt="">Βλατίδες</span></div>
+          <div class="dxbar"><button class="dxi" data-tip="Αναμνηστικό"><img class="ico" src="images/icons/dx-an.svg" data-sym="dx-an" alt=""></button><button class="dxi" data-tip="Κλινική εξέταση"><img class="ico" src="images/icons/dx-mag.svg" data-sym="dx-mag" alt=""></button><span class="dxnote"><img class="ico" src="images/icons/dx-ser.svg" data-sym="dx-ser" alt="">Οπτική εξέταση για παρουσία κροτόνων</span></div></article>
+        <article class="cond s-item zoo"><h4>Μυίαση <span class="zoo-badge"><img class="ico" src="images/icons/i-zoo.svg" data-sym="i-zoo" alt=""><span class="zoo-label">Ζωονόσος</span></span></h4>
+          <div class="medblock"><img class="medimg" src="images/myiasis.webp" alt="Μυίαση" data-lb="Μυίαση"></div>
+          <p>Συμβαίνει όταν ορισμένα είδη μυιών εναποθέτουν τα αυγά τους στο υγρό δέρμα ή σε πληγές των ζώων. Κατά την εκκόλαψη, οι προνύμφες καταναλώνουν τον δερματικό ιστό. Συνήθως υπάρχει δευτερογενής λοίμωξη της πληγής και μπορεί επίσης να υπάρχει κνησμός.</p>
+          <div class="taghead">Βλάβες</div><div class="tags">
+            <span class="tag"><img class="ico" src="images/icons/i-eros.svg" data-sym="i-eros" alt="">Έλκη</span><span class="tag"><img class="ico" src="images/icons/i-prur.svg" data-sym="i-prur" alt="">Πόνος και κνησμός</span></div>
+          <div class="dxbar"><button class="dxi" data-tip="Αναμνηστικό"><img class="ico" src="images/icons/dx-an.svg" data-sym="dx-an" alt=""></button><button class="dxi" data-tip="Κλινική εξέταση"><img class="ico" src="images/icons/dx-mag.svg" data-sym="dx-mag" alt=""></button></div></article>
+      </div>
+    </div>
+    <div>
+      <div class="topic"><h3 style="font-size:20px">Ψώρα (Mange)</h3>
+        <div class="cond s-item" style="margin-bottom:14px">
+          <div class="medblock"><img class="medimg" src="images/mange.webp" alt="Ψώρα" data-lb="Ψώρα"></div>
+          <p>Τα ακάρεα είναι ενδοδιωκτικά ή επιφανειακά παράσιτα του δέρματος, τα οποία έχουν διαφορετικά πρότυπα κατανομής και κλινικά σημεία, ανάλογα με το εν λόγω είδος. Μπορεί να εμφανιστεί δευτερογενές πυόδερμα.</p>
+          <div class="taghead">Βλάβες</div><div class="tags">
+            <span class="tag"><img class="ico" src="images/icons/i-pap.svg" data-sym="i-pap" alt="">Βλατίδες</span><span class="tag"><img class="ico" src="images/icons/i-cyst.svg" data-sym="i-cyst" alt="">Φλύκταινες</span><span class="tag"><img class="ico" src="images/icons/i-crust.svg" data-sym="i-crust" alt="">Κρούστες</span><span class="tag"><img class="ico" src="images/icons/i-eros.svg" data-sym="i-eros" alt="">Έλκη</span><span class="tag"><img class="ico" src="images/icons/i-alo.svg" data-sym="i-alo" alt="">Αλωπεκία</span><span class="tag"><img class="ico" src="images/icons/i-ery.svg" data-sym="i-ery" alt="">Ερύθημα</span><span class="tag"><img class="ico" src="images/icons/i-hyper.svg" data-sym="i-hyper" alt="">Υπερμελάχρωση</span><span class="tag"><img class="ico" src="images/icons/i-lich.svg" data-sym="i-lich" alt="">Λειχηνοποίηση</span></div>
+          <div class="dxbar"><button class="dxi" data-tip="Αναμνηστικό"><img class="ico" src="images/icons/dx-an.svg" data-sym="dx-an" alt=""></button><button class="dxi" data-tip="Κλινική εξέταση"><img class="ico" src="images/icons/dx-mag.svg" data-sym="dx-mag" alt=""></button><button class="dxi" data-tip="Ξέσιμο δέρματος"><img class="ico" src="images/icons/dx-scr.svg" data-sym="dx-scr" alt=""></button><button class="dxi" data-tip="Βιοψία"><img class="ico" src="images/icons/dx-bio.svg" data-sym="dx-bio" alt=""></button></div>
+        </div>
+        <div class="condgrid">
+          <article class="cond s-item zoo"><h4>Σαρκοπτική και νοτοεδρική ψώρα (ακαρίαση σκύλου και γάτας) <span class="zoo-badge"><img class="ico" src="images/icons/i-zoo.svg" data-sym="i-zoo" alt=""><span class="zoo-label">Ζωονόσος</span></span></h4>
+            <div class="medblock">
+              <figure class="medfig"><img class="medimg" src="images/sarcoptes.webp" alt="Sarcoptes scabiei (μικροσκόπηση)" data-lb="Sarcoptes scabiei."><figcaption class="figcap">Sarcoptes scabiei.</figcaption></figure>
+              <figure class="medfig"><img class="medimg" src="images/cat_mange.webp" alt="Γάτα με νοτοεδρική ψώρα" data-lb="Γάτα με νοτοεδρική ψώρα."><figcaption class="figcap">Γάτα με νοτοεδρική ψώρα.</figcaption></figure>
+            </div>
+            <p>Τα <i>Sarcoptes scabiei</i> και <i>Notoedres cati</i> ανοίγουν σήραγγες στην επιδερμίδα όπου γεννούν τα αυγά τους. Αυτοί οι τύποι ψώρας είναι εξαιρετικά κνησμώδεις.</p></article>
+          <article class="cond s-item"><h4>Ωτοδεκτική ψώρα</h4>
+            <div class="medblock">
+              <figure class="medfig"><img class="medimg" src="images/otodectes_mange.webp" alt="Ωτοδεκτική ψώρα — καφεμαύρο κηρώδες ωτικό εξίδρωμα" data-lb="Ωτοδεκτική ψώρα — καφεμαύρο κηρώδες εξίδρωμα"><figcaption class="figcap">Ωτοδεκτική ψώρα.</figcaption></figure>
+              <figure class="medfig"><img class="medimg" src="images/otodectesmicro.webp" alt="Otodectes cynotis (μικροσκόπηση)" data-lb="Otodectes cynotis (μικροσκόπηση)"><figcaption class="figcap">Otodectes cynotis.</figcaption></figure>
+            </div>
+            <p>Το <i>Otodectes cynotis</i> ζει στον έξω ακουστικό πόρο και, σε βαριές προσβολές, στο δέρμα. Προκαλεί ωτίτιδα με χαρακτηριστικό καφεμαύρο κηρώδες εξίδρωμα και κνησμό.</p></article>
+          <article class="cond s-item"><h4>Δημοδικτική ψώρα (δεμοδίκωση)</h4>
+            <div class="medblock">
+              <figure class="medfig"><img class="medimg" src="images/demodexspp.webp" alt="Demodex spp. (μικροσκόπηση)" data-lb="Demodex spp. (μικροσκόπηση)"><figcaption class="figcap">Demodex spp.</figcaption></figure>
+            </div>
+            <p>Τα είδη <i>Demodex</i> ζουν στους θύλακες των τριχών, στους σμηγματογόνους αδένες και στην επιφανειακή επιδερμίδα. Η παρουσία πυοδέρματος μπορεί να οδηγήσει σε κνησμό.</p>
+            <ul class="checks"><li><b>Εντοπισμένη δεμοδίκωση:</b> λιγότερες από έξι βλάβες.</li><li><b>Γενικευμένη δεμοδίκωση:</b> παρουσιάζεται ως 5 ή περισσότερες εστιακές βλάβες, ή ως δύο ή περισσότερες προσβεβλημένες περιοχές του σώματος.</li></ul></article>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div></div></div>
+</section>
+
+<!-- ==================== CHAPTER 8 · ALLERGIC DERMATOPATHIES ==================== -->
+<section class="spread chapter" id="ch8">
+  <button class="spread-head acc-head" aria-expanded="false" aria-controls="ch8-body">
+    <span class="chnum">8</span>
+    <h2 id="allergic" class="acc-title">Αλλεργικές δερματοπάθειες</h2>
+    <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <div class="acc-body" id="ch8-body"><div class="acc-inner"><div class="acc-pad">
+  <div class="cond s-item" style="margin-bottom:18px">
+    <p>Αυτές προκαλούνται από αντίδραση υπερευαισθησίας που μπορεί να πυροδοτηθεί από διαφορετικά αντιγόνα και αρχικά εκδηλώνονται με ερύθημα, βλατίδες και κνησμό. Ο κνησμός προκαλεί αυτοπροκαλούμενο τραύμα, παράγοντας έτσι νέες βλάβες. Η δευτερογενής λοίμωξη και η εξέλιξη προς χρόνιες βλάβες είναι κοινή.</p>
+    <div class="taghead">Βλάβες</div><div class="tags">
+      <span class="tag"><img class="ico" src="images/icons/i-ery.svg" data-sym="i-ery" alt="">Ερύθημα</span><span class="tag"><img class="ico" src="images/icons/i-pap.svg" data-sym="i-pap" alt="">Βλατίδες</span><span class="tag"><img class="ico" src="images/icons/i-prur.svg" data-sym="i-prur" alt="">Κνησμός</span><span class="tag"><img class="ico" src="images/icons/i-crust.svg" data-sym="i-crust" alt="">Κρούστες και σμηγματόρροια</span><span class="tag"><img class="ico" src="images/icons/i-alo.svg" data-sym="i-alo" alt="">Αλωπεκία</span><span class="tag"><img class="ico" src="images/icons/i-hyper.svg" data-sym="i-hyper" alt="">Υπερμελάχρωση</span><span class="tag"><img class="ico" src="images/icons/i-lich.svg" data-sym="i-lich" alt="">Λειχηνοποίηση</span></div>
+    <div class="dxbar"><button class="dxi" data-tip="Αναμνηστικό"><img class="ico" src="images/icons/dx-an.svg" data-sym="dx-an" alt=""></button><button class="dxi" data-tip="Κλινική εξέταση"><img class="ico" src="images/icons/dx-mag.svg" data-sym="dx-mag" alt=""></button><span class="dxnote"><img class="ico" src="images/icons/dx-ser.svg" data-sym="dx-ser" alt="">Δοκιμασίες αλλεργίας</span></div>
+  </div>
+  <div class="condgrid">
+    <article class="cond s-item"><h4>Αλλεργική δερματίτιδα από ψύλλους (FAD)</h4>
+      <div class="medblock"><img class="medimg" src="images/fad.webp" alt="Αλλεργική δερματίτιδα από ψύλλους" data-lb="Αλλεργική (από ψύλλους) δερματίτιδα (FAD)"></div>
+      <p><b>Αντιγόνο: σάλιο ψύλλων.</b> Οι βλάβες εμφανίζονται, ιδιαίτερα στην οσφυοϊερή περιοχή. Στις γάτες, οι βλάβες εμφανίζονται επίσης στο κεφάλι, τον λαιμό, τους μηρούς και την κοιλιακή χώρα. Το σάλιο των ψύλλων, που ενοφθαλμίζεται μέσω του τσιμπήματος, είναι ο πυροδοτικός παράγοντας. Τα κλινικά σημεία μπορεί να επιμείνουν για κάποιο χρονικό διάστημα μετά την απομάκρυνση του παράσιτου.</p>
+      <div class="taghead">Βλάβες</div><div class="tags"><span class="tag"><img class="ico" src="images/icons/i-prur.svg" data-sym="i-prur" alt="">Κνησμός που σχετίζεται με την έκθεση του ζώου σε ψύλλους</span></div></article>
+    <article class="cond s-item"><h4>Κυνική ατοπική δερματίτιδα (CAD)</h4>
+      <div class="medblock"><img class="medimg" src="images/cad.webp" alt="Κυνική ατοπική δερματίτιδα" data-lb="Κυνική ατοπική δερματίτιδα (CAD)"></div>
+      <p>Γενετικά προδιατεθειμένη, χρόνια ή υποτροπιάζουσα φλεγμονώδης και κνησμώδης αλλεργική δερματική νόσος με χαρακτηριστικά κλινικά γνωρίσματα που σχετίζονται με <b>αντισώματα IgE</b>, τα οποία στις περισσότερες περιπτώσεις στρέφονται κατά <b>περιβαλλοντικών αλλεργιογόνων</b>.</p>
+      <p>Τα πέλματα, το πρόσωπο, τα αυτιά, οι καμπτικές επιφάνειες των μπροστινών ποδιών, οι μασχάλες και η κοιλιά είναι οι περιοχές που προσβάλλονται συχνότερα. Οι επιλογές διαχείρισης εξαρτώνται από τη σοβαρότητα των κλινικών σημείων και από το αν ο κνησμός είναι εποχικός ή καθ' όλη τη διάρκεια του έτους.</p></article>
+    <article class="cond s-item"><h4>Ατοπιοειδής δερματίτιδα σκύλου (ALD)</h4>
+      <p>Φλεγμονώδης, κνησμώδης δερματική νόσος με κλινικά χαρακτηριστικά πανομοιότυπα με αυτά της CAD, στην οποία η απόκριση IgE σε περιβαλλοντικά ή άλλα αλλεργιογόνα δεν μπορεί να τεκμηριωθεί.</p></article>
+    <article class="cond s-item"><h4>Τροφογενής ατοπική δερματίτιδα (FIAD)</h4>
+      <p>Σκύλοι με ατοπική δερματίτιδα για τους οποίους η τροφή αποτελεί έναν από τους εκλυτικούς παράγοντες της νόσου τους.</p></article>
+  </div>
+  </div></div></div>
+</section>
+
+<!-- ==================== CHAPTER 9 · FELINE EOSINOPHILIC GRANULOMA COMPLEX ==================== -->
+<section class="spread chapter" id="ch9">
+  <button class="spread-head acc-head" aria-expanded="false" aria-controls="ch9-body">
+    <span class="chnum">9</span>
+    <h2 id="fegc" class="acc-title">Σύμπλεγμα ηωσinοφιλικού κοκκιώματος της γάτας</h2>
+    <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <div class="acc-body" id="ch9-body"><div class="acc-inner"><div class="acc-pad">
+  <article class="cond s-item">
+    <div class="medblock">
+      <figure class="medfig"><img class="medimg" src="images/felinegranuloma.webp" alt="Ηωσινόφιλο κόκκιωμα" data-lb="Ηωσινόφιλο κόκκιωμα."><figcaption class="figcap">Ηωσινόφιλο κόκκιωμα.</figcaption></figure>
+    </div>
+    <p>Στις γάτες, περιγράφει τρεις τύπους δερματικών βλαβών:</p>
+    <ul class="checks">
+      <li><b>Ηωσινόφιλες πλάκες της γάτας:</b> στην κοιλιά ή στους μηρούς.</li>
+      <li><b>Ηωσινόφιλο κόκκιωμα της γάτας:</b> στον στοματικό βλεννογόνο ή στα πίσω πόδια.</li>
+      <li><b>Νωθρά έλκη (indolent ulcers):</b> συνήθως προσβάλλουν τα χείλη.</li>
+    </ul>
+    <div class="taghead">Βλάβες</div><div class="tags"><span class="tag"><img class="ico" src="images/icons/i-pap.svg" data-sym="i-pap" alt="">Βλατίδες, οζίδια και πλάκες</span></div>
+    <div class="dxbar"><button class="dxi" data-tip="Αναμνηστικό"><img class="ico" src="images/icons/dx-an.svg" data-sym="dx-an" alt=""></button><button class="dxi" data-tip="Κλινική εξέταση"><img class="ico" src="images/icons/dx-mag.svg" data-sym="dx-mag" alt=""></button><button class="dxi" data-tip="Κυτταρολογία"><img class="ico" src="images/icons/dx-cyt.svg" data-sym="dx-cyt" alt=""></button><button class="dxi" data-tip="Βιοψία"><img class="ico" src="images/icons/dx-bio.svg" data-sym="dx-bio" alt=""></button></div>
+    <p style="margin-top:8px">Συσχετίζεται με αντιδράσεις υπερευαισθησίας (FAD, FIAD και AD) καθώς και με άλλους παράγοντες, αν και η ακριβής παθογένειά του παραμένει άγνωστη.</p>
+  </article>
+  </div></div></div>
+</section>
+
+<!-- ==================== CHAPTER 10 · ALOPECIA ==================== -->
+<section class="spread chapter" id="ch10">
+  <button class="spread-head acc-head" aria-expanded="false" aria-controls="ch10-body">
+    <span class="chnum">10</span>
+    <h2 id="alopecia" class="acc-title">Αλωπεκίες</h2>
+    <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <div class="acc-body" id="ch10-body"><div class="acc-inner"><div class="acc-pad">
+  <div class="cols">
+    <div>
+      <div class="cond s-item" style="margin-bottom:14px">
+        <div class="medblock"><img class="medimg" src="images/alopecia.webp" alt="Αλωπεκία" data-lb="Αλωπεκία — μη κνησμώδης αλωπεκία"></div>
+        <p>Αυτή η ενότητα περιλαμβάνει μη κνησμώδεις αλωπεκίες. Η κατανομή των βλαβών μπορεί να βοηθήσει στην καθοδήγηση της διάγνωσης.</p>
+        <div class="taghead">Βλάβες</div><div class="tags"><span class="tag"><img class="ico" src="images/icons/i-alo.svg" data-sym="i-alo" alt="">Αλωπεκία</span></div>
+        <div class="dxbar"><button class="dxi" data-tip="Αναμνηστικό"><img class="ico" src="images/icons/dx-an.svg" data-sym="dx-an" alt=""></button><button class="dxi" data-tip="Κλινική εξέταση"><img class="ico" src="images/icons/dx-mag.svg" data-sym="dx-mag" alt=""></button><span class="dxnote"><img class="ico" src="images/icons/dx-ser.svg" data-sym="dx-ser" alt="">Διάφορες διαγνωστικές εξετάσεις, ανάλογα με την περίπτωση</span></div>
+      </div>
+      <article class="cond s-item"><h4>Ενδοκρινικές αλωπεκίες</h4>
+        <p>Διμερής συμμετρική αλωπεκία που δεν επηρεάζει το κεφάλι ή τα άκρα. Το δέρμα με αλωπεκία είναι ανυψωμένο και υπερμελαγχρωμένο. Οι τρίχες που απομένουν μπορούν εύκολα να τραβηχτούν. Μπορεί να υπάρχει σμηγματόρροια που ευνοεί δευτερογενείς λοιμώξεις.</p>
+        <ul class="checks">
+          <li><b>Υπεραδρονοκορτικισμός ή σύνδρομο Cushing:</b> μπορεί να υπάρχει ασβέστωση του δέρματος (calcinosis cutis).</li>
+          <li><b>Υποθυρεοειδισμός:</b> αλωπεκία στη ραχιαία και πλάγια βάση της ουράς παρατηρείται περιστασιακά.</li>
+          <li><b>Δερματόπτωση από σεξουαλικές ορμόνες:</b> εμφανίζεται τόσο σε αρσενικά όσο και σε θηλυκά και μπορεί να εμφανιστεί οπουδήποτε στο σώμα.</li>
+          <li><b>Αλωπεκία X:</b> η ακριβής αιτία της είναι άγνωστη, αν και οι θεωρίες δείχνουν ενδοκρινικές διαταραχές.</li>
+        </ul>
+      </article>
+    </div>
+    <div>
+      <article class="cond s-item"><h4>Άλλες αλωπεκίες</h4>
+        <div class="medblock"><img class="medimg" src="images/otheralopecias.webp" alt="Άλλες αλωπεκίες" data-lb="Άλλες αλωπεκίες"></div>
+        <ul class="checks">
+          <li><b>Ψυχογενής αλωπεκία της γάτας:</b> συμβαίνει λόγω υπερβολικής περιποίησης (lamesis/grooming), συνήθως λόγω στρες. Προσβάλλει περιοχές που η γάτα μπορεί να γλείψει: το εσωτερικό των μπροστινών ποδιών, τους μηρούς, την κοιλιακή χώρα και το περίνεο. Οι εναπομείνασες τρίχες δεν μπορούν εύκολα να τραβηχτούν. Εκτός από την αλωπεκία, το δέρμα δεν φαίνεται να έχει τραυματιστεί. Τρίχες μπορούν να βρεθούν στα κόπρανα και στον έμετο.</li>
+          <li><b>Συγγενής υποτριχωσία:</b> εκδηλώνεται κατά τη γέννηση ή γύρω στον πρώτο μήνα της ζωής.</li>
+          <li><b>Αλωπεκία με αραίωση χρώματος και δισχιδής δυσπλασία των θυλάκων μαύρης τρίχας:</b> αυτές οι αλλοιώσεις επηρεάζουν περιοχές με χρωματισμένη τρίχα· οι περιοχές με λευκή τρίχα δεν επηρεάζονται.</li>
+          <li><b>Φαλάκρα του σκύλου:</b> εμφανίζεται με την ηλικία στην περιοχή γύρω από τα αυτιά, τους έσω μηρούς, τον λαιμό και την περιοχή της κοιλιάς. Το δέρμα με αλωπεκία γίνεται υπερμελαγχρωμένο. Οι εναπομείνασες τρίχες δεν μπορούν εύκολα να τραβηχτούν.</li>
+          <li><b>Υποτροπιάζουσα αλωπεκία στα πλευρά των σκύλων:</b> εποχική θυλακική δυσπλασία των πλευρών. Η απώλεια και η επανέκφυση των τριχών μπορεί να είναι κυκλική ή η απώλεια τριχών μπορεί να είναι μόνιμη.</li>
+          <li><b>Αλωπεκία από έλξη:</b> προκαλείται από τη χρήση λαστιχάκιων μαλλιών και άλλων διακοσμητικών αξεσουάρ μαλλιών.</li>
+          <li><b>Μεταγεννητική αλωπεκία:</b> προσωρινή απώλεια μαλλιών μπορεί να συμβεί κατά τη διάρκεια της γαλουχίας.</li>
+          <li><b>Υπερβολική τριχόπτωση (Shedding):</b> αν και η άφθονη απώλεια τρίχας μπορεί να ανησυχήσει τον ιδιοκτήτη, αυτό δεν συνεπάγεται απαραίτητα πρόβλημα εάν δεν παρατηρηθούν συγκεκριμένες φαλακρές περιοχές.</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+  </div></div></div>
+</section>
+
+<!-- ==================== CHAPTER 11 · KERATOSEBORRHOEIC DISORDERS ==================== -->
+<section class="spread chapter" id="ch11">
+  <button class="spread-head acc-head" aria-expanded="false" aria-controls="ch11-body">
+    <span class="chnum">11</span>
+    <h2 id="keratoseborrhoeic" class="acc-title">Κερατοσμηγματόρροες διαταραχές</h2>
+    <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <div class="acc-body" id="ch11-body"><div class="acc-inner"><div class="acc-pad">
+  <div class="cols">
+    <div>
+      <div class="condgrid">
+        <article class="cond s-item"><h4>Σμηγματόρροια του σκύλου</h4>
+          <div class="medblock"><img class="medimg" src="images/seborrhoea.webp" alt="Σμηγματόρροια σκύλου" data-lb="Σμηγματόρροια σκύλου"></div>
+          <p>Η σμηγματόρροια μπορεί να είναι ξηρή ή λιπαρή με υπερβολική παραγωγή σμήγματος. Μπορεί να είναι πρωτοπαθής ή δευτεροπαθής σε άλλες διαταραχές. Η κηρώδης ωτίτιδα και οι δευτερογενείς λοιμώξεις του δέρματος είναι κοινές. Συχνά παρουσιάζει ταγγισμένη οσμή.</p>
+          <div class="taghead">Βλάβες</div><div class="tags">
+            <span class="tag"><img class="ico" src="images/icons/i-scale.svg" data-sym="i-scale" alt="">Λεπτές φολίδες και κρούστες δέρματος</span><span class="tag"><img class="ico" src="images/icons/i-prur.svg" data-sym="i-prur" alt="">Ήπιος έως έντονος κνησμός</span><span class="tag"><img class="ico" src="images/icons/i-alo.svg" data-sym="i-alo" alt="">Ξηρό και θαμπό τρίχωμα</span><span class="tag"><img class="ico" src="images/icons/i-hyperk.svg" data-sym="i-hyperk" alt="">Λιπαρό και δυσσοσmo δέρμα</span></div>
+          <div class="dxbar"><button class="dxi" data-tip="Αναμνηστικό"><img class="ico" src="images/icons/dx-an.svg" data-sym="dx-an" alt=""></button><button class="dxi" data-tip="Κλινική εξέταση"><img class="ico" src="images/icons/dx-mag.svg" data-sym="dx-mag" alt=""></button><button class="dxi" data-tip="Βιοψία"><img class="ico" src="images/icons/dx-bio.svg" data-sym="dx-bio" alt=""></button></div></article>
+        <article class="cond s-item"><h4>Ηπατοδερματικό σύνδρομο</h4>
+          <div class="medblock"><img class="medimg" src="images/hepatocut.webp" alt="Ηπατοδερματικό σύνδρομο" data-lb="Ηπατοδερματικό σύνδρομο"></div>
+          <p>Μια σπάνια, χρόνια και συχνά θανατηφόρα ασθένεια. Συνήθως συσχετίζεται με σακχαρώδη διαβήτη, αλλά μπορεί να προκύψει από παγκreatικούς όγκους. Οι δερματικές εκδηλώσεις είναι συμμετρικές και εμφανίζονται σε περιοχές ευάλωτες σε τραυματισμούς από πίεση.</p>
+          <div class="taghead">Βλάβες</div><div class="tags">
+            <span class="tag"><img class="ico" src="images/icons/i-ery.svg" data-sym="i-ery" alt="">Ερύθημα</span><span class="tag"><img class="ico" src="images/icons/i-prur.svg" data-sym="i-prur" alt="">Ελάχιστος έως έντονος κνησμός</span><span class="tag"><img class="ico" src="images/icons/i-scale.svg" data-sym="i-scale" alt="">Φολίδες δέρματος και κρούστες</span><span class="tag"><img class="ico" src="images/icons/i-eros.svg" data-sym="i-eros" alt="">Διαβρώσεις και έλκη στα πέλματα, τα αυτιά και τα μάτια</span><span class="tag"><img class="ico" src="images/icons/i-hyperk.svg" data-sym="i-hyperk" alt="">Υπερκεράτωση των πελμάτων</span></div>
+          <div class="dxbar"><button class="dxi" data-tip="Αναμνηστικό"><img class="ico" src="images/icons/dx-an.svg" data-sym="dx-an" alt=""></button><button class="dxi" data-tip="Κλινική εξέταση"><img class="ico" src="images/icons/dx-mag.svg" data-sym="dx-mag" alt=""></button><span class="dxnote"><img class="ico" src="images/icons/dx-ser.svg" data-sym="dx-ser" alt="">Αιματολογική ανάλυση· υπερηχογράφημα</span></div></article>
+        <article class="cond s-item"><h4>Ιδιοπαθής ρινοψηφιακή υπερκεράτωση</h4>
+          <div class="medblock"><img class="medimg" src="images/naso_digital_hyperkeratosis.webp" alt="Ιδιοπαθής ρινοψηφιακή υπερκεράτωση" data-lb="Ιδιοπαθής ρινοψηφιακή υπερκεράτωση"></div>
+          <p>Ιδιοπαθής νόσος με υπερβολικό σχηματισμό κερατίνης στη μύτη και τα πέλματα. Η εμφάνιση διαβρώσεων, ελκών και σχισμών μπορεί να υποδηλώνει ότι πρόκειται για αυτοάνοση νόσο.</p>
+          <div class="taghead">Βλάβες</div><div class="tags"><span class="tag"><img class="ico" src="images/icons/i-hyperk.svg" data-sym="i-hyperk" alt="">Υπερκεράτωση</span></div>
+          <div class="dxbar"><button class="dxi" data-tip="Κλινική εξέταση"><img class="ico" src="images/icons/dx-mag.svg" data-sym="dx-mag" alt=""></button><button class="dxi" data-tip="Βιοψία"><img class="ico" src="images/icons/dx-bio.svg" data-sym="dx-bio" alt=""></button></div></article>
+        <article class="cond s-item"><h4>Δερματίτιδα του άκρου του πτερυγίου του αυτιού του σκύλου</h4>
+          <div class="medblock"><img class="medimg" src="images/ear_dermatosis.webp" alt="Δερματίτιδα του άκρου του πτερυγίου του αυτιού" data-lb="Δερματίτιδα του άκρου του πτερυγίου του αυτιού του σκύλου"></div>
+          <p>Είναι συχνή σε σκύλους με κρεμαστά αυτιά όπως τα Basset Hounds ή τα Dachshunds. Εάν οι βλάβες εξελιχθούν ή εξαπλωθούν σε άλλα μέρη του σώματος, θα πρέπει να θεωρηθεί αυτοάνοση νόσος ή αγγειίτιδα.</p>
+          <div class="taghead">Βλάβες</div><div class="tags">
+            <span class="tag"><img class="ico" src="images/icons/i-crust.svg" data-sym="i-crust" alt="">Κρούστες</span><span class="tag"><img class="ico" src="images/icons/i-alo.svg" data-sym="i-alo" alt="">Αλωπεκία</span><span class="tag"><img class="ico" src="images/icons/i-eros.svg" data-sym="i-eros" alt="">Έλκη και σχισμές</span></div>
+          <div class="dxbar"><button class="dxi" data-tip="Κλινική εξέταση"><img class="ico" src="images/icons/dx-mag.svg" data-sym="dx-mag" alt=""></button><button class="dxi" data-tip="Βιοψία"><img class="ico" src="images/icons/dx-bio.svg" data-sym="dx-bio" alt=""></button></div></article>
+      </div>
+    </div>
+    <div>
+      <div class="topic"><h4 style="color:var(--lime-dk);font-size:16px">Υπερπλασία των αδένων της ουράς</h4>
+        <article class="cond s-item">
+          <div class="medblock"><img class="medimg" src="images/hyperplasia_tail_gland.webp" alt="Υπερπλασία των αδένων της ουράς" data-lb="Υπερπλασία των αδένων της ουράς"></div>
+          <p>Σμηγματόρροια που προέρχεται από τον υπερουραίο (supracaudal) αδένα στη βάση της ουράς. Στους σκύλους μπορεί να συσχετίζεται με άλλες σμηγματόρροες διαταραχές· παρατηρείται συχνότερα σε ακέραιες (μη στειρωμένες) αρσενικές γάτες.</p>
+          <div class="taghead">Βλάβες</div><div class="tags">
+            <span class="tag"><img class="ico" src="images/icons/i-alo.svg" data-sym="i-alo" alt="">Αλωπεκία και απολέπιση δέρματος</span><span class="tag"><img class="ico" src="images/icons/i-hyperk.svg" data-sym="i-hyperk" alt="">Δυσσοσμία</span><span class="tag"><img class="ico" src="images/icons/i-hyper.svg" data-sym="i-hyper" alt="">Υπερμελάχρωση</span><span class="tag"><img class="ico" src="images/icons/i-cyst.svg" data-sym="i-cyst" alt="">Φλύκταινες</span></div>
+          <div class="dxbar"><button class="dxi" data-tip="Αναμνηστικό"><img class="ico" src="images/icons/dx-an.svg" data-sym="dx-an" alt=""></button><button class="dxi" data-tip="Κλινική εξέταση"><img class="ico" src="images/icons/dx-mag.svg" data-sym="dx-mag" alt=""></button><button class="dxi" data-tip="Βιοψία"><img class="ico" src="images/icons/dx-bio.svg" data-sym="dx-bio" alt=""></button></div>
+        </article></div>
+      <div class="topic"><h4 style="color:var(--lime-dk);font-size:16px">Ακμή της γάτας</h4>
+        <article class="cond s-item">
+          <div class="medblock"><img class="medimg" src="images/feline_acne.webp" alt="Ακμή της γάτας" data-lb="Ακμή της γάτας"></div>
+          <p>Προσβάλλει κυρίως το πηγούνι και το κάτω χείλος. Οι θύλακες των τριχών αποφράσσονται με σμήγμα. Συνήθως υπάρχει επίσης δευτερογενής λοίμωξη. Μπορούν να παρατηρηθούν οζίδια, αιμορραγικές κρούστες και βλατίδες.</p>
+          <div class="taghead">Βλάβες</div><div class="tags">
+            <span class="tag"><img class="ico" src="images/icons/i-scale.svg" data-sym="i-scale" alt="">Σμηγματόρροια</span><span class="tag"><img class="ico" src="images/icons/i-comedo.svg" data-sym="i-comedo" alt="">Φαγέσωρες</span><span class="tag"><img class="ico" src="images/icons/i-cyst.svg" data-sym="i-cyst" alt="">Φλύκταινες</span></div>
+          <div class="dxbar"><button class="dxi" data-tip="Αναμνηστικό"><img class="ico" src="images/icons/dx-an.svg" data-sym="dx-an" alt=""></button><button class="dxi" data-tip="Κλινική εξέταση"><img class="ico" src="images/icons/dx-mag.svg" data-sym="dx-mag" alt=""></button><button class="dxi" data-tip="Βιοψία"><img class="ico" src="images/icons/dx-bio.svg" data-sym="dx-bio" alt=""></button></div>
+        </article></div>
+    </div>
+  </div>
+  </div></div></div>
+</section>
+
+<!-- ==================== CHAPTER 12 · PIGMENTATION DISORDERS ==================== -->
+<section class="spread chapter" id="ch12">
+  <button class="spread-head acc-head" aria-expanded="false" aria-controls="ch12-body">
+    <span class="chnum">12</span>
+    <h2 id="pigmentation" class="acc-title">Διαταραχές της χρώσης</h2>
+    <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <div class="acc-body" id="ch12-body"><div class="acc-inner"><div class="acc-pad">
+  <div class="condgrid">
+    <article class="cond s-item"><h4>Υπερμελάχρωση</h4>
+      <div class="medblock">
+        <figure class="medfig"><img class="medimg" src="images/lentigo.webp" alt="Φακή (Lentigo): επίπεδες μαύρες κηλίδες στο δέρμα" data-lb="Φακή (Lentigo)"><figcaption class="figcap">Φακή (Lentigo).</figcaption></figure>
+        <figure class="medfig"><img class="medimg" src="images/post-inflammatory-hyperpigmentation.webp" alt="Μεταφλεγμονώδης υπερμελάχρωση" data-lb="Μεταφλεγμονώδης υπερμελάχρωση"><figcaption class="figcap">Μεταφλεγμονώδης υπερμελάχρωση.</figcaption></figure>
+      </div>
+      <p><b>Φακή (Lentigo):</b> εμφανίζονται επίπεδες μαύρες κηλίδες, χωρίς άλλα κλινικά σημεία. Αυτές είναι πιο συχνές σε μεγαλύτερης ηλικίας ζώα.</p>
+      <p><b>Μεταφλεγμονώδης υπερμελάχρωση:</b> παρατηρείται σε σκύλους ως αντίδραση σε ορισμένες καταστάσεις.</p></article>
+    <article class="cond s-item"><h4>Υπομελάχρωση</h4>
+      <div class="medblock">
+        <figure class="medfig"><img class="medimg" src="images/vitiligo.webp" alt="Λεύκη (Vitiligo): ροζ/λευκές κηλίδες δέρματος" data-lb="Λεύκη (Vitiligo)"><figcaption class="figcap">Λεύκη (Vitiligo).</figcaption></figure>
+        <figure class="medfig"><img class="medimg" src="images/nasal_depigmentation.webp" alt="Ρινική αποχρωμάτωση" data-lb="Ρινική αποχρωμάτωση"><figcaption class="figcap">Ρινική αποχρωμάτωση.</figcaption></figure>
+      </div>
+      <p><b>Λεύκη (Vitiligo):</b> ροζ/λευκές κηλίδες δέρματος. Παρατηρείται σε σκύλους και γάτες. Δεν παρουσιάζονται άλλα κλινικά σημεία.</p>
+      <p><b>Ρινική αποχρωμάτωση:</b> απώλεια της χρώσης της μύτης. Δεν παρουσιάζονται άλλα κλινικά σημεία.</p></article>
+  </div>
+  </div></div></div>
+</section>
+
+<!-- ==================== CHAPTER 13 · IMMUNE-MEDIATED DERMATOPATHIES ==================== -->
+<section class="spread chapter" id="ch13">
+  <button class="spread-head acc-head" aria-expanded="false" aria-controls="ch13-body">
+    <span class="chnum">13</span>
+    <h2 id="immune" class="acc-title">Ανοσολογικές δερματοπάθειες</h2>
+    <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <div class="acc-body" id="ch13-body"><div class="acc-inner"><div class="acc-pad">
+  <article class="cond s-item">
+    <h4>Αυτοάνοσες δερματοπάθειες</h4>
+    <div class="medblock">
+      <img class="medimg" src="images/autoimmune1.webp" alt="Αποχρωμάτωση της μύτης που επηρεάζει επίσης τη ρινική γέφυρα" data-lb="Αποχρωμάτωση της μύτης που επηρεάζει επίσης τη ρινική γέφυρα.">
+      <img class="medimg" src="images/autoimmune2.webp" alt="Βλάβες πελμάτων" data-lb="Βλάβες πελμάτων.">
+      <img class="medimg" src="images/autoimmune3.webp" alt="Βλέφαρα σκύλου με λύκο" data-lb="Βλέφαρα σκύλου με λύκο.">
+      <img class="medimg" src="images/autoimmune4.webp" alt="Πρωκτική βλεννογονοδερματική ένωση σε σκύλο με πέμφιγα κοινή" data-lb="Πρωκτική βλεννογονοδερματική ένωση σε σκύλο με πέμφιγα κοινή.">
+    </div>
+    <p>Οι αυτοάνοσες δερματοπάθειες προκαλούνται από την παραγωγή αντισωμάτων έναντι διαφορετικών συστατικών του δέρματος. Οι δερματικές βλάβες στο ρινικό διάφραγμα, τα αυτιά και τα πέλματα είναι χαρακτηριστικές των αυτοάνοσων διεργασιών, αν και οι βλάβες μπορούν επίσης να εμφανιστούν σε άλλα μέρη του σώματος, όπως οι βλεννογονοδερματικές ενώσεις. Μπορεί να υπάρχουν και άλλα κλινικά σημεία, ανάλογα με την εν λόγω πάθηση. Εάν η δερματική λοίμωξη είναι εκτεταμένη, μπορεί να υπάρχουν συστηματικά σημεία όπως λεμφαденоμεγαλία, πυρετός, απάθεια ή ανορεξία.</p>
+    <ul class="checks" style="columns:2;gap:18px">
+      <li><b>Φυλλοειδής πέμφιγα (Pemphigus foliaceus)</b></li><li><b>Ερυθromatώδης πέμφιγα</b></li><li><b>Κοινή πέμφιγα (Pemphigus vulgaris)</b></li>
+      <li><b>Παραπεδερμική φλυκταινώδης πέμφιγα</b></li><li><b>Δισκοειδής ερυθηματώδης λύκος</b></li>
+      <li><b>Συστηματικός ερυθηματώδης λύκος</b></li><li><b>Δερματική φυσαλιδώδης ερυθηματώδης λύκος</b></li>
+    </ul>
+    <div class="taghead">Βλάβες</div><div class="tags">
+      <span class="tag"><img class="ico" src="images/icons/i-cyst.svg" data-sym="i-cyst" alt="">Φλύκταινες (δύσκολο να φανούν)</span><span class="tag"><img class="ico" src="images/icons/i-eros.svg" data-sym="i-eros" alt="">Διαβρώσεις</span><span class="tag"><img class="ico" src="images/icons/i-crust.svg" data-sym="i-crust" alt="">Κρούστες και απολέπιση δέρματος</span><span class="tag"><img class="ico" src="images/icons/i-alo.svg" data-sym="i-alo" alt="">Αλωπεκία</span><span class="tag"><img class="ico" src="images/icons/i-prur.svg" data-sym="i-prur" alt="">Μεταβλητός κνησμός</span><span class="tag"><img class="ico" src="images/icons/i-hyperk.svg" data-sym="i-hyperk" alt="">Υπερκεράτωση πελμάτων</span></div>
+    <div class="dxbar"><button class="dxi" data-tip="Αναμνηστικό"><img class="ico" src="images/icons/dx-an.svg" data-sym="dx-an" alt=""></button><button class="dxi" data-tip="Κλινική εξέταση"><img class="ico" src="images/icons/dx-mag.svg" data-sym="dx-mag" alt=""></button><button class="dxi" data-tip="Βιοψία / ιστοπαθολογία"><img class="ico" src="images/icons/dx-bio.svg" data-sym="dx-bio" alt=""></button></div>
+  </article>
+  <article class="cond s-item" style="margin-top:14px"><h4>Αγγειίτιδα</h4>
+    <p>Φλεγμονώδης νόσος των αιμοφόρων αγγείων. Προσβάλλει κυρίως τα αυτιά, τον στοματικό βλεννογόνο, τα πέλματα, την ουρά και το όσχεο. Μπορεί να είναι δευτερογενής σε διάφορους παράγοντες, συμπεριλαμβανομένων φαρμακευτικών αντιδράσεων, κακοήθων όγκων και λοιμώξεων, ή μπορεί να είναι ιδιοπαθής.</p>
+    <div class="taghead">Βλάβες</div><div class="tags"><span class="tag"><img class="ico" src="images/icons/i-eros.svg" data-sym="i-eros" alt="">Έλκη και νέκρωση</span></div>
+    <div class="dxbar"><button class="dxi" data-tip="Αναμνηστικό"><img class="ico" src="images/icons/dx-an.svg" data-sym="dx-an" alt=""></button><button class="dxi" data-tip="Κλινική εξέταση"><img class="ico" src="images/icons/dx-mag.svg" data-sym="dx-mag" alt=""></button><button class="dxi" data-tip="Βιοψία"><img class="ico" src="images/icons/dx-bio.svg" data-sym="dx-bio" alt=""></button><span class="dxnote"><img class="ico" src="images/icons/dx-ser.svg" data-sym="dx-ser" alt="">Αιματολογική ανάλυση</span></div>
+  </article>
+  </div></div></div>
+</section>
+
+<!-- ==================== CHAPTER 14 · NEOPLASIA ==================== -->
+<section class="spread chapter" id="ch14">
+  <button class="spread-head acc-head" aria-expanded="false" aria-controls="ch14-body">
+    <span class="chnum">14</span>
+    <h2 id="neoplasia" class="acc-title">Νεοπλασίες</h2>
+    <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <div class="acc-body" id="ch14-body"><div class="acc-inner"><div class="acc-pad">
+  <article class="cond s-item">
+    <div class="medblock"><img class="medimg" src="images/neoplasia.webp" alt="Δερματική νεοπλασία" data-lb="Νεοπλασία"></div>
+    <p>Οι όγκοι του δέρματος μπορεί να είναι καλοήθεις ή κακοήθεις. Δεδομένου ότι η φύση τους καθορίζει την ανάπτυξη, τη θεραπεία και την πρόγνωσή τους, και επειδή είναι αδύνατον να διαγνωσθεί αυτό μόνο με την κλινική εξέταση, απαιτείται κυτταρολογική ή ιστοπαθολογική προσέγγιση.</p>
+    <div class="taghead">Βλάβες</div><div class="tags">
+      <span class="tag"><img class="ico" src="images/icons/i-pap.svg" data-sym="i-pap" alt="">Όγκος</span><span class="tag"><img class="ico" src="images/icons/i-eros.svg" data-sym="i-eros" alt="">Έλκη και αιμορραγία σε ορισμένες περιπτώσεις</span></div>
+    <div class="dxbar"><button class="dxi" data-tip="Αναμνηστικό"><img class="ico" src="images/icons/dx-an.svg" data-sym="dx-an" alt=""></button><button class="dxi" data-tip="Κλινική εξέταση"><img class="ico" src="images/icons/dx-mag.svg" data-sym="dx-mag" alt=""></button><button class="dxi" data-tip="Κυτταρολογία"><img class="ico" src="images/icons/dx-cyt.svg" data-sym="dx-cyt" alt=""></button><button class="dxi" data-tip="Βιοψία / ιστοπαθολογία"><img class="ico" src="images/icons/dx-bio.svg" data-sym="dx-bio" alt=""></button></div>
+  </article>
+  </div></div></div>
+</section>
+
+<!-- ==================== CHAPTER 15 · OTHER DERMATOPATHIES ==================== -->
+<section class="spread chapter" id="ch15">
+  <button class="spread-head acc-head" aria-expanded="false" aria-controls="ch15-body">
+    <span class="chnum">15</span>
+    <h2 id="other" class="acc-title">Άλλες δερματοπάθειες</h2>
+    <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <div class="acc-body" id="ch15-body"><div class="acc-inner"><div class="acc-pad">
+  <div class="condgrid">
+    <article class="cond s-item"><h4>Νεανική κυτταρίτιδα</h4>
+      <div class="medblock"><img class="medimg" src="images/cellulitis.webp" alt="Νεανική κυτταρίτιδα" data-lb="Νεανική κυτταρίτιδα"></div>
+      <p>Πάθηση που παρατηρείται κυρίως σε νεαρά κουτάβια. Προσβάλλει κυρίως τη μύτη και τα βλέφαρα, αλλά μπορεί επίσης να εμπλέξει τα πέλματα, τον πρωκτό και τον κόλπο. Προκαλεί λεμφαδενοπάθεια, ωτίτιδα, ανορεξία, κατάθλιψη και πυρετό.</p>
+      <div class="taghead">Βλάβες</div><div class="tags">
+        <span class="tag"><img class="ico" src="images/icons/i-cyst.svg" data-sym="i-cyst" alt="">Φυσσαλίδες και φλύκταινες</span><span class="tag"><img class="ico" src="images/icons/i-crust.svg" data-sym="i-crust" alt="">Κρούστες</span><span class="tag"><img class="ico" src="images/icons/i-alo.svg" data-sym="i-alo" alt="">Αλωπεκία</span></div>
+      <div class="dxbar"><button class="dxi" data-tip="Αναμνηστικό"><img class="ico" src="images/icons/dx-an.svg" data-sym="dx-an" alt=""></button><button class="dxi" data-tip="Κλινική εξέταση"><img class="ico" src="images/icons/dx-mag.svg" data-sym="dx-mag" alt=""></button><button class="dxi" data-tip="Κυτταρολογία"><img class="ico" src="images/icons/dx-cyt.svg" data-sym="dx-cyt" alt=""></button><button class="dxi" data-tip="Βιοψία"><img class="ico" src="images/icons/dx-bio.svg" data-sym="dx-bio" alt=""></button></div></article>
+    <article class="cond s-item"><h4>Ακραία δερματίτιδα από γλείψιμο</h4>
+      <div class="medblock"><img class="medimg" src="images/acral_dermatitis.webp" alt="Ακραία δερματίτιδα από γλείψιμο" data-lb="Ακραία δερματίτιδα από γλείψιμο"></div>
+      <p>Αυτή η νόσος προκαλείται από υπεרβολικό γλείψιμο συγκεκριμένων περιοχών των άκρων και μπορεί να προκληθεί από διάφορες διεργασίες, όπως αντιδράσεις υπερευαισθησίας, τραύμα, ξένα σώματα, παράσιτα, στρες, λοιμώξεις, αρθρικά, ενδοκρινικά ή νευρολογικά προβλήματα.</p>
+      <div class="taghead">Βλάβες</div><div class="tags">
+        <span class="tag"><img class="ico" src="images/icons/i-pap.svg" data-sym="i-pap" alt="">Προλιφεratική βλάβη</span><span class="tag"><img class="ico" src="images/icons/i-eros.svg" data-sym="i-eros" alt="">Έλκη</span><span class="tag"><img class="ico" src="images/icons/i-alo.svg" data-sym="i-alo" alt="">Αλωπεκία</span></div>
+      <div class="dxbar"><button class="dxi" data-tip="Αναμνηστικό"><img class="ico" src="images/icons/dx-an.svg" data-sym="dx-an" alt=""></button><button class="dxi" data-tip="Κλινική εξέταση"><img class="ico" src="images/icons/dx-mag.svg" data-sym="dx-mag" alt=""></button><button class="dxi" data-tip="Κυτταρολογία"><img class="ico" src="images/icons/dx-cyt.svg" data-sym="dx-cyt" alt=""></button><button class="dxi" data-tip="Βιοψία"><img class="ico" src="images/icons/dx-bio.svg" data-sym="dx-bio" alt=""></button></div></article>
+    <article class="cond s-item"><h4>Ηλιακή δερματίτιδα</h4>
+      <div class="medblock"><img class="medimg" src="images/solar_dermatosis.webp" alt="Ηλιακή δερματίτιδα" data-lb="Ηλιακή δερματίτιδα"></div>
+      <p>Προκαλείται από τις επιδράσεις του ήλιου σε περιοχές του δέρματος με λίγη τρίχα, ή ελάχιστη έως καθόλου χρώση, κυρίως τη μύτη, τα αυτιά ή τον κορμό. Μπορεί να οδηγήσει σε επαγόμενους από τον ήλιο όγκους.</p>
+      <div class="taghead">Βλάβες</div><div class="tags">
+        <span class="tag"><img class="ico" src="images/icons/i-ery.svg" data-sym="i-ery" alt="">Ερύθημα</span><span class="tag"><img class="ico" src="images/icons/i-scale.svg" data-sym="i-scale" alt="">Απολέπιση δέρματος και κρούστες</span><span class="tag"><img class="ico" src="images/icons/i-comedo.svg" data-sym="i-comedo" alt="">Φαγέσωρες, διαβρώσεις και αποχετευτικές οδοί (fistulous tracts)</span><span class="tag"><img class="ico" src="images/icons/i-eros.svg" data-sym="i-eros" alt="">Έλκη</span></div>
+      <div class="dxbar"><button class="dxi" data-tip="Αναμνηστικό"><img class="ico" src="images/icons/dx-an.svg" data-sym="dx-an" alt=""></button><button class="dxi" data-tip="Κλινική εξέταση"><img class="ico" src="images/icons/dx-mag.svg" data-sym="dx-mag" alt=""></button><button class="dxi" data-tip="Βιοψία"><img class="ico" src="images/icons/dx-bio.svg" data-sym="dx-bio" alt=""></button></div></article>
+  </div>
+  </div></div></div>
+</section>
+
+<!-- ==================== CHAPTER 16 · DISTAL EXTREMITIES ==================== -->
+<section class="spread chapter" id="ch16">
+  <button class="spread-head acc-head" aria-expanded="false" aria-controls="ch16-body">
+    <span class="chnum">16</span>
+    <h2 id="extremities" class="acc-title">Άκρα</h2>
+    <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <div class="acc-body" id="ch16-body"><div class="acc-inner"><div class="acc-pad">
+  <div class="condgrid">
+    <article class="cond s-item"><h4>Βακτηριακή ποδοδερματίτιδα</h4>
+      <div class="medblock"><img class="medimg" src="images/bacterial_pododermatitis.webp" alt="Βακτηριακή ποδοδερματίτιδα" data-lb="Βακτηριακή ποδοδερματίτιδα"></div>
+      <p>Μπορεί να οδηγήσει σε χωλότητα και να προκαλέσει στο ζώο να γλείφει ή να δαγκώνει το άκρο. Οι υποκείμενες αιτίες περιλαμβάνουν ξένα σώματα, παράσιτα, βακτήρια, ζυμομύκητες, αλλεργίες και αυτοάνοσα νοσήματα.</p>
+      <div class="taghead">Βλάβες</div><div class="tags">
+        <span class="tag"><img class="ico" src="images/icons/i-ery.svg" data-sym="i-ery" alt="">Μεσοδακτύλιο ερύθημα</span><span class="tag"><img class="ico" src="images/icons/i-pap.svg" data-sym="i-pap" alt="">Βλατίδες</span><span class="tag"><img class="ico" src="images/icons/i-cyst.svg" data-sym="i-cyst" alt="">Φλύκταινες και φλύκταινες (blisters)</span><span class="tag"><img class="ico" src="images/icons/i-fist.svg" data-sym="i-fist" alt="">Έλκη και συρίγγια</span><span class="tag"><img class="ico" src="images/icons/i-alo.svg" data-sym="i-alo" alt="">Αλωπεκία</span><span class="tag"><img class="ico" src="images/icons/i-prur.svg" data-sym="i-prur" alt="">Πόνος</span></div>
+      <div class="dxbar"><button class="dxi" data-tip="Αναμνηστικό"><img class="ico" src="images/icons/dx-an.svg" data-sym="dx-an" alt=""></button><button class="dxi" data-tip="Κλινική εξέταση"><img class="ico" src="images/icons/dx-mag.svg" data-sym="dx-mag" alt=""></button><button class="dxi" data-tip="Κυτταρολογία"><img class="ico" src="images/icons/dx-cyt.svg" data-sym="dx-cyt" alt=""></button><button class="dxi" data-tip="Καλλιέργεια & αντιβιόγραμμα"><img class="ico" src="images/icons/dx-cul.svg" data-sym="dx-cul" alt=""></button></div></article>
+    <article class="cond s-item"><h4>Βακτηριακή νόσος των νυχιών</h4>
+      <div class="medblock">
+        <figure class="medfig"><img class="medimg" src="images/bacterial_nail_disease.webp" alt="Αποκόλληση νυχιού" data-lb="Αποκόλληση νυχιού."><figcaption class="figcap">Αποκόλληση νυχιού.</figcaption></figure>
+      </div>
+      <p>Αυτό συμβαίνει συνήθως ως αποτέλεσμα τραύματος. Εάν υπάρχουν πολλά προσβεβλημένα νύχια, άλλες αιτίες όπως ενδοκρινικές διαταραχές, αλλεργίες, ανοσολογικές παθήσεις, νεοπλασία ή ονυχοδυσπλασία, πρέπει να αποκλειστούν. Το νύχι σπάει και εμφανίζεται εξίδρωση. Μπορεί να υπάρχει πόνος, κατάθλιψη, έκκριση πύου από τη βάση του νύχιού και οίδημα.</p>
+      <div class="taghead">Βλάβες</div><div class="tags">
+        <span class="tag"><img class="ico" src="images/icons/i-prur.svg" data-sym="i-prur" alt="">Πόνος</span><span class="tag"><img class="ico" src="images/icons/i-nail.svg" data-sym="i-nail" alt="">Παρονυχία</span></div>
+      <div class="dxbar"><button class="dxi" data-tip="Αναμνηστικό"><img class="ico" src="images/icons/dx-an.svg" data-sym="dx-an" alt=""></button><button class="dxi" data-tip="Κλινική εξέταση"><img class="ico" src="images/icons/dx-mag.svg" data-sym="dx-mag" alt=""></button><button class="dxi" data-tip="Κυτταρολογία"><img class="ico" src="images/icons/dx-cyt.svg" data-sym="dx-cyt" alt=""></button><button class="dxi" data-tip="Καλλιέργεια & αντιβιόγραμμα"><img class="ico" src="images/icons/dx-cul.svg" data-sym="dx-cul" alt=""></button></div></article>
+    <article class="cond s-item"><h4>Μυκητίαση νυχιών</h4>
+      <div class="medblock"><img class="medimg" src="images/nail_mycosis.webp" alt="Μυκητίαση νυχιών" data-lb="Μυκητίαση νυχιών"></div>
+      <p>Σπάνια αλλά συχνότερα συνδεδεμένη με <i>Malassezia</i> ή δερματόφυτα. Η μυκητιασική λοίμωξη οδηγεί σε καφέ αποχρωμάτωση στη βάση του νυχιού· αυτή η λοίμωξη είναι πιο συχνή σε σκύλους με αλλεργική δερματίτιδα.</p>
+      <div class="taghead">Βλάβες</div><div class="tags">
+        <span class="tag"><img class="ico" src="images/icons/i-nail.svg" data-sym="i-nail" alt="">Παρονυχία</span><span class="tag"><img class="ico" src="images/icons/i-nail.svg" data-sym="i-nail" alt="">Ευθραuστα και παραμορφωμένα νύχια</span></div>
+      <div class="dxbar"><button class="dxi" data-tip="Αναμνηστικό"><img class="ico" src="images/icons/dx-an.svg" data-sym="dx-an" alt=""></button><button class="dxi" data-tip="Κλινική εξέταση"><img class="ico" src="images/icons/dx-mag.svg" data-sym="dx-mag" alt=""></button><button class="dxi" data-tip="Κυτταρολογία"><img class="ico" src="images/icons/dx-cyt.svg" data-sym="dx-cyt" alt=""></button><button class="dxi" data-tip="Καλλιέργεια"><img class="ico" src="images/icons/dx-cul.svg" data-sym="dx-cul" alt=""></button></div></article>
+  </div>
+  </div></div></div>
+</section>
+
+<!-- ==================== CHAPTER 17 · CALLUSES ==================== -->
+<section class="spread chapter" id="ch17">
+  <button class="spread-head acc-head" aria-expanded="false" aria-controls="ch17-body">
+    <span class="chnum">17</span>
+    <h2 id="calluses" class="acc-title">Τύλοι</h2>
+    <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <div class="acc-body" id="ch17-body"><div class="acc-inner"><div class="acc-pad">
+  <article class="cond s-item">
+    <div class="medblock"><img class="medimg" src="images/calluses.webp" alt="Τύλοι" data-lb="Τύλοι"></div>
+    <p>Δερματική αντίδραση σε συνεχιζόμενο τραύμα. Αυτό επηρεάζει κυρίως μεγαλόσωμες φυλές σε περιοχές πίεσης όπως οι αγκώνες, τα ισχία ή τα ταρσά. Μπορεί να υπάρξει δευτερογενής βακτηριακή λοίμωξη.</p>
+    <div class="taghead">Βλάβες</div><div class="tags">
+      <span class="tag"><img class="ico" src="images/icons/i-hyper.svg" data-sym="i-hyper" alt="">Υπερμελάχρωση</span><span class="tag"><img class="ico" src="images/icons/i-hyperk.svg" data-sym="i-hyperk" alt="">Υπερκεράτωση</span><span class="tag"><img class="ico" src="images/icons/i-fist.svg" data-sym="i-fist" alt="">Έλκος, συρίγγιο και εξίδρωση σε περίπτωση βακτηριακής λοίμωξης</span></div>
+    <div class="dxbar"><button class="dxi" data-tip="Αναμνηστικό"><img class="ico" src="images/icons/dx-an.svg" data-sym="dx-an" alt=""></button><button class="dxi" data-tip="Κλινική εξέταση"><img class="ico" src="images/icons/dx-mag.svg" data-sym="dx-mag" alt=""></button><button class="dxi" data-tip="Κυτταρολογία"><img class="ico" src="images/icons/dx-cyt.svg" data-sym="dx-cyt" alt=""></button><button class="dxi" data-tip="Καλλιέργεια & αντιβιόγραμμα"><img class="ico" src="images/icons/dx-cul.svg" data-sym="dx-cul" alt=""></button></div>
+  </article>
+  </div></div></div>
+</section>
+
+<!-- ==================== CHAPTER 18 · EYELIDS ==================== -->
+<section class="spread chapter" id="ch18">
+  <button class="spread-head acc-head" aria-expanded="false" aria-controls="ch18-body">
+    <span class="chnum">18</span>
+    <h2 id="eyelids" class="acc-title">Βλέφαρα</h2>
+    <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <div class="acc-body" id="ch18-body"><div class="acc-inner"><div class="acc-pad">
+  <article class="cond s-item"><h4>Βλεφαρίτιδα</h4>
+    <div class="medblock"><img class="medimg" src="images/blepharitis.webp" alt="Βλεφαρίτιδα" data-lb="Βλεφαρίτιδα"></div>
+    <p>Φλεγμονή των βλεφάρων. Οι κοινές αιτίες περιλαμβάνουν συγγενείς ανωμαλίες, αλλεργίες, λοίμωξη, νεοπλασία, λεϊσμανίωση και περιστασιακά άλλες φλεγμονώδεις διαταραχές.</p>
+    <div class="taghead">Βλάβες</div><div class="tags">
+      <span class="tag"><img class="ico" src="images/icons/i-ery.svg" data-sym="i-ery" alt="">Ερύθημα και φλεγμονή</span><span class="tag"><img class="ico" src="images/icons/i-alo.svg" data-sym="i-alo" alt="">Μεταβλητή αλωπεκία, ανάλογα με την αιτία</span><span class="tag"><img class="ico" src="images/icons/i-prur.svg" data-sym="i-prur" alt="">Μεταβλητός κνησμός, ανάλογα με την αιτία</span></div>
+    <div class="dxbar"><button class="dxi" data-tip="Αναμνηστικό"><img class="ico" src="images/icons/dx-an.svg" data-sym="dx-an" alt=""></button><button class="dxi" data-tip="Κλινική εξέταση"><img class="ico" src="images/icons/dx-mag.svg" data-sym="dx-mag" alt=""></button><button class="dxi" data-tip="Κυτταρολογία"><img class="ico" src="images/icons/dx-cyt.svg" data-sym="dx-cyt" alt=""></button><button class="dxi" data-tip="Καλλιέργεια & αντιβιόγραμμα"><img class="ico" src="images/icons/dx-cul.svg" data-sym="dx-cul" alt=""></button></div>
+  </article>
+  </div></div></div>
+</section>
+
+<!-- ==================== CHAPTER 19 · ANAL SACS ==================== -->
+<section class="spread chapter" id="ch19">
+  <button class="spread-head acc-head" aria-expanded="false" aria-controls="ch19-body">
+    <span class="chnum">19</span>
+    <h2 id="analsacs" class="acc-title">Πρωκτικοί σάκοι</h2>
+    <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <div class="acc-body" id="ch19-body"><div class="acc-inner"><div class="acc-pad">
+  <article class="cond s-item"><h4>Νόσος των πρωκτικών σάκων</h4>
+    <div class="medblock"><img class="medimg" src="images/anal_sac_disease.webp" alt="Νόσος των πρωκτικών σάκων" data-lb="Νόσος των πρωκτικών σάκων"></div>
+    <p>Έμφραξη των πρωκτικών αδένων. Προδιαθέτει το ζώο σε δευτερογενή λοίμωξη. Μπορούν να αναπτύξουν αποστήματα και να σχηματιστούν συρίγγια. Η ενόχληση αναγκάζει το ζώο να γλείφει ή να μασάει την περιοχή του περιπρωκτού, καθώς και να «σύρεται» (scooting).</p>
+    <div class="taghead">Βλάβες</div><div class="tags">
+      <span class="tag"><img class="ico" src="images/icons/i-ery.svg" data-sym="i-ery" alt="">Ερύθημα και φλεγμονή</span><span class="tag"><img class="ico" src="images/icons/i-abs.svg" data-sym="i-abs" alt="">Αποστήματα</span><span class="tag"><img class="ico" src="images/icons/i-fist.svg" data-sym="i-fist" alt="">Συρίγγια</span></div>
+    <div class="dxbar"><button class="dxi" data-tip="Αναμνηστικό"><img class="ico" src="images/icons/dx-an.svg" data-sym="dx-an" alt=""></button><button class="dxi" data-tip="Κλινική εξέταση"><img class="ico" src="images/icons/dx-mag.svg" data-sym="dx-mag" alt=""></button></div>
+  </article>
+  </div></div></div>
+</section>
+
+<!-- ==================== CHAPTER 20 · EARS ==================== -->
+<section class="spread chapter" id="ch20">
+  <button class="spread-head acc-head" aria-expanded="false" aria-controls="ch20-body">
+    <span class="chnum">20</span>
+    <h2 id="ears" class="acc-title">Αυτιά</h2>
+    <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <div class="acc-body" id="ch20-body"><div class="acc-inner"><div class="acc-pad">
+  <div class="cols">
+    <div>
+      <article class="cond s-item"><h4>Εξωτερική ωτίτιδα</h4>
+        <div class="medblock">
+          <figure class="medfig"><img class="medimg" src="images/otitis_externa.webp" alt="Ερύθημα αυτιού και πτερυγίου" data-lb="Ερύθημα αυτιού και πτερυγίου."><figcaption class="figcap">Ερύθημα αυτιού και πτερυγίου.</figcaption></figure>
+        </div>
+        <p>Φλεγμονή του έξω ακουστικού πόρου. Προκαλεί πόνο και κνησμό. Το τίναγμα του κεφαλιού μπορεί να προκαλέσει ωτικά αιματώματα.</p>
+        <p>Υπάρχουν <b>προδιαθεσικοί παράγοντες</b> που αυξάνουν την υγρασία που υπάρχει μέσα στον ακουστικό πόρο ή εμποδίζουν τον αερισμό του, γεγονός που μπορεί να ευνοήσει τη δευτερογενή αποικισμό:</p>
+        <ul class="checks" style="columns:2;gap:14px">
+          <li>Κρεμαστά πτερύγια</li><li>Υπερτρίχωση</li><li>Συχνά λουτρά</li><li>Υπεרβολικός καθαρισμός</li><li>Κακή υγιεινή</li>
+        </ul>
+        <div class="taghead">Βλάβες</div><div class="tags">
+          <span class="tag"><img class="ico" src="images/icons/i-ery.svg" data-sym="i-ery" alt="">Ερύθημα, οίδημα και στένωση του ακουστικού πόρου</span><span class="tag"><img class="ico" src="images/icons/i-prur.svg" data-sym="i-prur" alt="">Πόνος και κνησμός</span><span class="tag"><img class="ico" src="images/icons/i-eros.svg" data-sym="i-eros" alt="">Εκδορές</span><span class="tag"><img class="ico" src="images/icons/i-crust.svg" data-sym="i-crust" alt="">Κρούστες και ωτικό εξίδρωμα</span><span class="tag"><img class="ico" src="images/icons/i-hyper.svg" data-sym="i-hyper" alt="">Υπερμελάχρωση</span><span class="tag"><img class="ico" src="images/icons/i-lich.svg" data-sym="i-lich" alt="">Υπερκεράτωση και λειχηνοποίηση</span></div>
+        <div class="dxbar"><button class="dxi" data-tip="Αναμνηστικό"><img class="ico" src="images/icons/dx-an.svg" data-sym="dx-an" alt=""></button><button class="dxi" data-tip="Κλινική εξέταση"><img class="ico" src="images/icons/dx-mag.svg" data-sym="dx-mag" alt=""></button><button class="dxi" data-tip="Κυτταρολογία"><img class="ico" src="images/icons/dx-cyt.svg" data-sym="dx-cyt" alt=""></button><button class="dxi" data-tip="Καλλιέργεια & αντιβιόγραμμα"><img class="ico" src="images/icons/dx-cul.svg" data-sym="dx-cul" alt=""></button></div>
+      </article>
+    </div>
+    <div>
+      <article class="cond s-item"><h4>Μέση ωτίτιδα</h4>
+        <p>Φλεγμονώδης νόσος στην κοιλότητα του μέσου ωτός, η οποία υπάρχει σε περισσότερους από τους μισούς σκύλους ασθενείς με χρόνια εξωτερική ωτίτιδα. Συνήθως προκαλείται από επέκταση λοίμωξης του έξω ακουστικού πόρου ή από διάτρηση του τυμπάνου από ξένο σώμα.</p>
+        <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:14px;margin-top:8px">
+          <div><div class="taghead" style="color:var(--lime-dk)">Κλινικά σημεία</div><p>Παρόμοια με εκείνα της εξωτερικής ωτίτιδας.</p></div>
+          <div><div class="taghead" style="color:var(--lime-dk)">Θεραπεία</div>
+            <ul class="checks"><li>Εάν το τύμπανο είναι άθικτο: συνήθως υπάρχει καλή απόκριση στην αντιβιοτική θεραπεία.</li><li>Εάν υπάρχει ρήξη τυμπάνου και χρόνια φλεγμονή του μέσου ωτός: η επιτυχής θεραπεία είναι πιο δύσκολο να επιτευχθεί.</li></ul></div>
+        </div>
+        <div class="taghead">Βλάβες</div><div class="tags">
+          <span class="tag"><img class="ico" src="images/icons/i-ery.svg" data-sym="i-ery" alt="">Ερύθημα και φλεγμονή</span><span class="tag"><img class="ico" src="images/icons/i-abs.svg" data-sym="i-abs" alt="">Αποστήματα</span><span class="tag"><img class="ico" src="images/icons/i-fist.svg" data-sym="i-fist" alt="">Συρίγγια</span></div>
+        <div class="dxbar"><button class="dxi" data-tip="Αναμνηστικό"><img class="ico" src="images/icons/dx-an.svg" data-sym="dx-an" alt=""></button><button class="dxi" data-tip="Κλινική εξέταση"><img class="ico" src="images/icons/dx-mag.svg" data-sym="dx-mag" alt=""></button></div>
+      </article>
+    </div>
+  </div>
+  </div></div></div>
+</section>
+
+</main>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="foot" id="end">
+  <div class="foot-grid">
+    <div class="biblio">
+      <h4>Βιβλιογραφία:</h4>
+      <ul>
+        <li>Gustavo Machicote Goth. Canine and Feline Dermatology. Ed. Servet (2013). ISBN: 978-84-942449-5-7.</li>
+        <li>Pet owner's information atlas. Dermatology. Review: Carmen Lorente. Ed. Servet (2013). ISBN: 978-84-941014-7-2.</li>
+        <li>Pet owner's information atlas. Diagnosis in dermatology Review: Carmen Lorente. Ed. Servet (2015). ISBN: 978-84-16315-48-2.</li>
+      </ul>
+    </div>
+    <div class="foot-brand">
+      <a class="brand" href="#top" aria-label="Elanco"><span>Elanco</span></a>
+      <p>Η Elanco και το λογότυπο με τη διαγώνια μπάρα είναι εμπορικά σήματα της Elanco ή των θυγατρικών της.<br>©2026 Elanco και οι θυγατρικές της. EM-BG-26-0047</p>
+    </div>
+  </div>
+</footer>
+
+<button id="toTop" aria-label="Επιστροφή στην κορυφή">↑</button>
+
+<!-- ==================== LIGHTBOX ==================== -->
+<div id="lb" role="dialog" aria-modal="true" aria-label="Προβολή εικόνας">
+  <button id="lbBtn" aria-label="Κλείσιμο">✕</button>
+  <button id="lbPrev" aria-label="Προηγούμενη εικόνα">‹</button>
+  <img id="lbImg" src="" alt="">
+  <div id="lbCap"></div>
+  <button id="lbNext" aria-label="Επόμενη εικόνα">›</button>
+</div>
+
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+
+/* ---------- motion preference: JS scrolls respect reduced motion ---------- */
+const REDUCED=matchMedia('(prefers-reduced-motion: reduce)');
+const SMOOTH=()=>REDUCED.matches?'auto':'smooth';
+
+/* ================================================================
+   ASSET FALLBACKS + DIAGNOSTICS
+   - Icons: if images/icons/<id>.svg is missing, the <img> is swapped
+     for an inline <svg><use href="#id"> that renders the built-in
+     symbol — icons ALWAYS display, with or without the files.
+   - Photos: missing files show an "image not found" tile with the
+     expected path (or hide if HIDE_MISSING_IMAGES = true).
+================================================================ */
+const HIDE_MISSING_IMAGES = false;
+const MISSING = [];
+function escXml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');}
+function imgFallback(el){
+  const wanted=el.dataset.wanted||'';
+  if(HIDE_MISSING_IMAGES){el.style.display='none';return;}
+  MISSING.push(wanted);
+  el.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(
+    '<svg xmlns="http://www.w3.org/2000/svg" width="240" height="110">'+
+    '<rect width="100%" height="100%" fill="#eef2f6"/>'+
+    '<rect x="1" y="1" width="238" height="108" fill="none" stroke="#d7dee4"/>'+
+    '<text x="50%" y="36%" font-family="sans-serif" font-size="13" font-weight="700" fill="#8a95a0" text-anchor="middle">image not found</text>'+
+    '<text x="50%" y="60%" font-family="monospace" font-size="10" fill="#9aa3ad" text-anchor="middle">'+escXml(wanted)+'</text></svg>');
+}
+function iconFallback(img){
+  const id=img.dataset.sym;
+  const sym=id&&document.getElementById(id);
+  if(!sym){imgFallback(img);return;}
+  const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
+  svg.setAttribute('class',img.getAttribute('class')||'ico');
+  svg.setAttribute('viewBox',sym.getAttribute('viewBox')||'0 0 24 24');
+  svg.setAttribute('aria-hidden','true');
+  const use=document.createElementNS('http://www.w3.org/2000/svg','use');
+  use.setAttribute('href','#'+id);
+  svg.appendChild(use);
+  img.replaceWith(svg);
+}
+function handleImgError(t){
+  if(t.dataset.fb)return; t.dataset.fb='1';
+  t.dataset.wanted=t.getAttribute('src')||'';
+  (t.dataset.sym?iconFallback:imgFallback)(t);
+}
+document.addEventListener('error',e=>{
+  if(e.target&&e.target.tagName==='IMG')handleImgError(e.target);
+},true);
+/* initial pass — skip images whose src was deferred away (no src yet) */
+ $$('img').forEach(i=>{if(i.getAttribute('src')&&i.complete&&i.naturalWidth===0)handleImgError(i);});
+addEventListener('load',()=>{
+  const content=MISSING.filter(p=>!p.includes('/icons/'));
+  if(content.length){
+    console.log('%cDermatology guide — missing images:','font-weight:bold');
+    content.forEach(p=>console.warn('  ✗ '+p));
+    console.info('Expected: images/ folder next to index.html with these exact filenames.');
+  }else{
+    console.log('%cDermatology guide — all content images loaded ✓','color:#76A824;font-weight:bold');
+  }
+});
+
+/* ---------- element refs (hoisted so all features share them) ---------- */
+const topbar=$('#topbar'), toolbar=$('#toolbar'),
+      input=$('#search'), count=$('#count'),
+      chapters=$$('.chapter'), exBtn=$('#exAll'),
+      items=$$('.s-item');
+count.setAttribute('aria-live','polite');
+
+/* snapshot pristine card HTML for search restore (BEFORE any attribute
+   injection, so restores always come back with real srcs) */
+items.forEach(el=>{if(!el.hasAttribute('data-static'))el.dataset.orig=el.innerHTML;});
+
+/* ================================================================
+   (2) EMPTY SEARCH STATE
+================================================================ */
+toolbar.insertAdjacentHTML('afterend',
+  '<div id="noResults" class="hidden" role="status" aria-live="polite">'+
+  'Δεν βρέθηκαν αποτελέσματα για "<span id="noResultsQ"></span>".<br>'+
+  '<button id="noResultsClear" type="button">Καθαρισμός αναζήτησης</button></div>');
+ $('#noResultsClear').addEventListener('click',()=>{
+  input.value='';runFilter();input.focus();
+});
+
+/* ================================================================
+   (7) MEDIA PERFORMANCE + (6) KEYBOARD ACCESS FOR IMAGES
+   - loading=lazy / decoding=async on every photo
+   - photos inside CLOSED chapters park their src in data-src and are
+     never requested until the chapter is opened
+   - intrinsic dimensions recorded on load so repeat views reserve
+     their space (no layout shift while images stream)
+   - photos become keyboard-focusable triggers for the lightbox
+================================================================ */
+function prepareMedia(){
+  $$('img.medimg, .skinfig>img').forEach(img=>{
+    if(img.dataset.med)return;
+    img.dataset.med='1';
+    img.setAttribute('loading','lazy');
+    img.setAttribute('decoding','async');
+    img.setAttribute('tabindex','0');
+    img.setAttribute('role','button');
+    img.setAttribute('aria-label',(img.alt||'Εικόνα')+' — άνοιγμα μεγαλύτερης προβολής');
+  });
+  deferClosedChapterMedia();
+}
+function deferClosedChapterMedia(){
+  chapters.forEach(ch=>{
+    if(ch.classList.contains('open'))return;
+    ch.querySelectorAll('img.medimg[data-med]').forEach(img=>{
+      if(img.getAttribute('src')&&!img.dataset.deferred){
+        img.dataset.deferred='1';
+        img.dataset.src=img.getAttribute('src');
+        img.removeAttribute('src');
+      }
+    });
+  });
+}
+function restoreChapterMedia(ch){
+  ch.querySelectorAll('img.medimg[data-deferred]').forEach(img=>{
+    img.setAttribute('src',img.dataset.src);
+    img.removeAttribute('data-deferred');
+  });
+}
+/* capture-phase load: record dimensions (also works after search
+   restores card HTML and recreates the <img> nodes) */
+document.addEventListener('load',e=>{
+  const t=e.target;
+  if(t&&t.tagName==='IMG'&&t.classList.contains('medimg')&&t.naturalWidth&&t.naturalHeight){
+    t.setAttribute('width',t.naturalWidth);
+    t.setAttribute('height',t.naturalHeight);
+  }
+},true);
+
+/* ================================================================
+   (1) STATE PERSISTENCE — sessionStorage + pushState deep links
+================================================================ */
+const SKEY='dermaGuideState';
+function saveState(){
+  try{sessionStorage.setItem(SKEY,JSON.stringify({
+    open:chapters.filter(c=>c.classList.contains('open')).map(c=>c.id),
+    q:input.value,
+    zoo:document.body.classList.contains('zoo-only')
+  }));}catch(e){}
+}
+let snap=null;
+function applySavedState(){
+  let s=null;
+  try{s=JSON.parse(sessionStorage.getItem(SKEY)||'null');}catch(e){}
+  if(!s)return false;
+  (s.open||[]).forEach(id=>{const c=document.getElementById(id);if(c)setOpen(c,true);});
+  if(typeof s.q==='string'&&s.q)input.value=s.q;
+  if(s.zoo){document.body.classList.add('zoo-only');$('#zooBtn').classList.add('on');}
+  /* remember the pre-filter open set so clearing search restores it */
+  if(s.open)snap=chapters.map(c=>s.open.includes(c.id));
+  return !!(s.q||s.zoo);
+}
+function targetFromHash(){
+  const id=decodeURIComponent((location.hash||'').slice(1));
+  return id?document.getElementById(id):null;
+}
+function navigateTo(t){
+  if(!t)return;
+  const ch=t.closest('.chapter');
+  let needOpen=false;
+  if(ch&&!ch.classList.contains('open'))needOpen=setOpen(ch,true);
+  setTimeout(()=>{t.scrollIntoView({behavior:SMOOTH(),block:'start'});},needOpen?430:0);
+}
+/* clicks push a history entry; Back/Forward handled by popstate */
+document.addEventListener('click',e=>{
+  const a=e.target.closest('a[href^="#"]');if(!a)return;
+  const id=a.getAttribute('href').slice(1), t=document.getElementById(id);
+  if(!t)return; e.preventDefault();
+  navigateTo(t);
+  if(location.hash!=='#'+id)history.pushState(null,'','#'+id);
+});
+addEventListener('popstate',()=>{
+  const t=targetFromHash();
+  if(t&&(t.closest('.chapter')||t.closest('.hero')))navigateTo(t);
+  else scrollTo({top:0,behavior:SMOOTH()});
+});
+
+/* ================================================================
+   LIGHTBOX — keyboard, focus management, (5) swipe navigation
+================================================================ */
+const lb=$('#lb'), lbImg=$('#lbImg'), lbCap=$('#lbCap'),
+      lbPrev=$('#lbPrev'), lbNext=$('#lbNext'), lbBtn=$('#lbBtn');
+let lbList=[], lbIdx=0, lbReturnFocus=null;
+function showLb(){
+  const it=lbList[lbIdx];
+  lbImg.src=it.src; lbImg.alt=it.alt||'';
+  lbCap.textContent=it.cap;
+  const multi=lbList.length>1;
+  lbPrev.style.display=lbNext.style.display=multi?'':'none';
+  lb.classList.add('show');
+}
+function closeLb(){
+  lb.classList.remove('show');
+  if(lbReturnFocus&&document.contains(lbReturnFocus))lbReturnFocus.focus();
+  lbReturnFocus=null;
+}
+function openLb(img){
+  lbReturnFocus=document.activeElement;
+  const grp=img.closest('.medblock')||img.closest('.medrow');
+  lbList=[{src:img.src,alt:img.alt,cap:img.dataset.lb||img.alt||''}];
+  if(grp){grp.querySelectorAll('img.medimg').forEach(i=>{
+    if(i===img||lbList.some(x=>x.src===i.src))return;
+    lbList.push({src:i.src,alt:i.alt,cap:i.dataset.lb||i.alt||''});
+  });}
+  lbIdx=0;showLb();
+  lbBtn.focus();
+}
+lbBtn.onclick=closeLb;
+lb.onclick=e=>{if(e.target===lb)closeLb();};
+lbPrev.onclick=e=>{e.stopPropagation();lbIdx=(lbIdx-1+lbList.length)%lbList.length;showLb();};
+lbNext.onclick=e=>{e.stopPropagation();lbIdx=(lbIdx+1)%lbList.length;showLb();};
+/* focus trap while the dialog is open */
+lb.addEventListener('keydown',e=>{
+  if(e.key!=='Tab')return;
+  const f=[lbBtn,lbPrev,lbNext].filter(b=>b.style.display!=='none');
+  const i=f.indexOf(document.activeElement);
+  if(e.shiftKey&&i<=0){e.preventDefault();f[f.length-1].focus();}
+  else if(!e.shiftKey&&(i===f.length-1||i===-1)){e.preventDefault();f[0].focus();}
+});
+/* swipe left / right navigates multi-photo groups */
+let lbTX=0,lbTY=0;
+lb.addEventListener('touchstart',e=>{lbTX=e.touches[0].clientX;lbTY=e.touches[0].clientY;},{passive:true});
+lb.addEventListener('touchend',e=>{
+  const dx=e.changedTouches[0].clientX-lbTX, dy=e.changedTouches[0].clientY-lbTY;
+  if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy)*1.4)(dx<0?lbNext:lbPrev).click();
+},{passive:true});
+document.addEventListener('click',e=>{
+  const img=e.target.closest('img.medimg, .skinfig>img');
+  if(img)openLb(img);
+});
+/* (6) open the lightbox with Enter / Space from the keyboard */
+document.addEventListener('keydown',e=>{
+  if(e.key!=='Enter'&&e.key!==' ')return;
+  const img=e.target&&e.target.closest?e.target.closest('img.medimg, .skinfig>img'):null;
+  if(img){e.preventDefault();openLb(img);}
+});
+
+/* ---------- header heights + sticky toolbar ---------- */
+let hdrH=48;
+function measure(){
+  topbar.classList.add('no-trans');
+  const full=topbar.offsetHeight;
+  topbar.classList.add('shrink');
+  hdrH=topbar.offsetHeight;
+  topbar.classList.remove('shrink');
+  void topbar.offsetHeight;
+  topbar.classList.remove('no-trans');
+  const r=document.documentElement.style;
+  r.setProperty('--hdrFull',full+'px');
+  r.setProperty('--hdrH',hdrH+'px');
+  r.setProperty('--toolH',toolbar.offsetHeight+'px');
+}
+addEventListener('resize',measure);addEventListener('load',measure);
+
+/* ---------- progress + shrink + stuck + back-to-top ---------- */
+const prog=$('#progress'), toTop=$('#toTop');
+addEventListener('scroll',()=>{
+  const y=scrollY, h=document.documentElement;
+  topbar.classList.toggle('shrink',y>40);
+  toolbar.classList.toggle('stuck',toolbar.getBoundingClientRect().top<=hdrH+.5);
+  prog.style.width=(y/(h.scrollHeight-h.clientHeight)*100)+'%';
+  toTop.classList.toggle('show',y>600);
+  spy();
+},{passive:true});
+toTop.onclick=()=>scrollTo({top:0,behavior:SMOOTH()});
+
+/* ---------- accordions (no-op safe; restores deferred media on open) ---------- */
+function setOpen(ch,open){
+  if(ch.classList.contains('open')===open)return false;
+  ch.classList.toggle('open',open);
+  ch.querySelector('.acc-head').setAttribute('aria-expanded',open);
+  if(open)restoreChapterMedia(ch);
+  refreshEx();saveState();
+  return true;
+}
+function refreshEx(){exBtn.textContent=chapters.some(c=>!c.classList.contains('open'))?'Ανάπτυξη όλων':'Σύμπτυξη όλων';}
+chapters.forEach(ch=>ch.querySelector('.acc-head').addEventListener('click',()=>setOpen(ch,!ch.classList.contains('open'))));
+exBtn.onclick=()=>{const anyClosed=chapters.some(c=>!c.classList.contains('open'));
+  chapters.forEach(c=>setOpen(c,anyClosed));setTimeout(spy,500);};
+
+/* ---------- scrollspy ---------- */
+const links=$$('.subnav a');
+function spy(){
+  const y=hdrH+toolbar.offsetHeight+14;let cur=null;
+  links.forEach(l=>{
+    const t=document.getElementById(l.getAttribute('href').slice(1));if(!t)return;
+    if(t.classList.contains('acc-title')){if(t.getBoundingClientRect().top<=y)cur=l;}
+    else{const c=t.closest('.chapter');
+      if(c&&c.classList.contains('open')&&t.getBoundingClientRect().top<=y)cur=l;}
+  });
+  if(!cur)cur=links[0];
+  links.forEach(l=>l.classList.toggle('act',l===cur));
+}
+
+/* ---------- (3) search + zoonosis filter: debounced, scroll-stable ---------- */
+let filterTimer=null;
+function runFilter(){
+  const q=input.value.trim().toLowerCase(), zoo=document.body.classList.contains('zoo-only');
+  const filtering=!!(q||zoo);
+  if(filtering&&!snap)snap=chapters.map(c=>c.classList.contains('open'));
+  let n=0; const savedY=scrollY;
+  items.forEach(el=>{
+    if(zoo&&el.classList.contains('cond')&&!el.classList.contains('zoo')){el.classList.add('hidden');return;}
+    const hit=!q||el.textContent.toLowerCase().includes(q);
+    if(!el.hasAttribute('data-static')){el.innerHTML=el.dataset.orig;if(hit&&q)mark(el,q);}
+    el.classList.toggle('hidden',!hit); if(hit)n++;
+  });
+  $$('.topic').forEach(t=>{const its=[...t.querySelectorAll('.s-item')];
+    if(its.length)t.classList.toggle('hidden',its.every(i=>i.classList.contains('hidden')));});
+  chapters.forEach((c,i)=>{
+    const has=filtering&&[...c.querySelectorAll('.s-item')].some(x=>!x.classList.contains('hidden'));
+    const want=filtering?has:(snap?snap[i]:c.classList.contains('open'));
+    setOpen(c,want);            /* no-op when unchanged → no reflow storm */
+  });
+  if(!filtering)snap=null;
+  count.textContent=q?n+' αποτελέσματα':'';
+  /* (2) empty-state feedback */
+  const none=filtering&&n===0;
+  $('#noResults').classList.toggle('hidden',!none);
+  if(none)$('#noResultsQ').textContent=input.value.trim();
+  prepareMedia();               /* re-attrs restored nodes, re-defer closed */
+  measure();setTimeout(spy,500);
+  /* (3) keep the viewport anchored while typing */
+  requestAnimationFrame(()=>scrollTo(0,Math.min(savedY,
+    document.documentElement.scrollHeight-innerHeight)));
+  saveState();
+}
+input.addEventListener('input',()=>{clearTimeout(filterTimer);filterTimer=setTimeout(runFilter,180);});
+ $('#zooBtn').onclick=e=>{document.body.classList.toggle('zoo-only');
+  e.currentTarget.classList.toggle('on');runFilter();};
+function mark(el,q){
+  const w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT),nodes=[];
+  while(w.nextNode())nodes.push(w.currentNode);
+  nodes.forEach(n=>{const i=n.nodeValue.toLowerCase().indexOf(q);
+    if(i<0)return;const r=document.createRange();
+    r.setStart(n,i);r.setEnd(n,i+q.length);
+    try{const m=document.createElement('mark');r.surroundContents(m);}catch(e){}});
+}
+
+/* ---------- spotlight ---------- */
+let focused=null;
+function clearSpot(){document.body.classList.remove('spot');
+  $$('.cond.focused').forEach(c=>c.classList.remove('focused'));focused=null;}
+document.addEventListener('click',e=>{
+  if(e.target.closest('a,button,input,label,select,summary,img.medimg,.skinfig'))return;
+  const card=e.target.closest('.cond');
+  if(card){if(focused===card){clearSpot();}
+    else{clearSpot();focused=card;card.classList.add('focused');document.body.classList.add('spot');}}
+  else clearSpot();
+});
+/* Escape / arrows: lightbox first, then page-level shortcuts */
+document.addEventListener('keydown',e=>{
+  if(lb.classList.contains('show')){
+    if(e.key==='Escape')closeLb();
+    else if(e.key==='ArrowLeft')lbPrev.click();
+    else if(e.key==='ArrowRight')lbNext.click();
+    return;
+  }
+  if(e.key==='Escape'){clearSpot();if(input.value){input.value='';runFilter();input.blur();}}
+});
+
+/* ---------- steppers (skin cross-section only — hair is now a PNG) ---------- */
+document.addEventListener('click',e=>{
+  const b=e.target.closest('.circbtn');if(!b)return;
+  const grp=b.closest('.circbtns');if(!grp)return;
+  grp.querySelectorAll('.circbtn').forEach(x=>x.classList.toggle('on',x===b));
+  const wrap=grp.closest('.skinwrap');if(!wrap)return;
+  wrap.dataset.state=b.dataset.step;
+  wrap.querySelectorAll('.stepPane').forEach(p=>p.classList.toggle('show',p.dataset.step===b.dataset.step));
+});
+
+/* ================================================================
+   INIT — restore state → prepare media → re-apply filter → deep link
+================================================================ */
+measure();
+const hadFilter=applySavedState();
+if(!hadFilter)setOpen(chapters[0],true);
+refreshEx();
+prepareMedia();
+if(hadFilter)runFilter();
+const t0=targetFromHash();
+if(t0&&(t0.closest('.chapter')||t0.closest('.hero')))navigateTo(t0);
+spy();
+</script>
+</body>
+</html>
